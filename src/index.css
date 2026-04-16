@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-studio-bg: #ffffff;
+  --color-studio-accent: #1a9391;
+  --color-studio-ink: #2c2421;
+}
+
+@layer base {
+  body {
+    @apply bg-studio-bg text-studio-ink font-sans antialiased;
+    background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  }
+  
+  @media (min-width: 1024px) {
+    body {
+      cursor: none;
+    }
+    
+    a, button, [role="button"] {
+      cursor: none;
+    }
+  }
+}
+
+@utility paper-texture {
+  background-image: url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+}
+
+@utility hand-drawn-border {
+  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+}
+
+@utility sketch-shadow {
+  box-shadow: 10px 10px 0px 0px rgba(26, 147, 145, 0.1);
+}
+
+@utility scrollbar-hide {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
