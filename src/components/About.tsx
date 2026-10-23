@@ -11,6 +11,9 @@ export default function About() {
           <div className="absolute inset-0 bg-gradient-to-t from-studio-bg via-studio-bg/30 to-transparent z-10" />
           <img
             src={PAGE_BANNERS.about}
+            fetchPriority="high"
+            width={1920}
+            height={1072}
             className="w-full h-full object-cover opacity-90"
             alt="About Banner"
             referrerPolicy="no-referrer"
@@ -54,7 +57,7 @@ export default function About() {
               <div className="absolute -inset-2 border-2 border-studio-ink/10 hand-drawn-border rotate-1" />
               
               <div className="relative h-full w-full overflow-hidden hand-drawn-border shadow-2xl bg-studio-ink/5 border border-studio-ink/10">
-                <img 
+                <img loading="lazy" decoding="async" 
                   src={founder.image} 
                   className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000 scale-110 group-hover:scale-100"
                   alt={founder.name}
@@ -123,8 +126,10 @@ export default function About() {
             transition={{ duration: 1 }}
             className="aspect-video rounded-2xl overflow-hidden shadow-2xl relative group"
           >
-            <img 
-              src="/images/about/studio-culture.png"
+            <img loading="lazy" decoding="async" 
+              src="/images/optimized/studio-culture.webp"
+              width={1920}
+              height={1072}
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-80 grayscale sepia-[0.2]"
               alt="Studio Environment"
               referrerPolicy="no-referrer"

@@ -27,8 +27,8 @@ export interface CaseStudy {
 }
 
 export const PAGE_BANNERS = {
-  home: "/images/banners/home.png",
-  about: "/images/banners/about.png",
+  home: "/images/optimized/studio-culture.webp",
+  about: "/images/optimized/about-banner.webp",
   services: "/images/banners/services.jpg",
   portfolio: "/images/banners/portfolio.jpg",
   contact: "/images/banners/contact.jpg",
@@ -65,7 +65,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         icon: "UserCircle",
         images: [
           "/images/services/characterization1.png",
-          "/images/services/characterization2..jpg",
+          "/images/services/characterization2.jpg",
           "/images/services/characterization3.jpg",
           "/images/services/characterization4.jpg",
           "/images/services/characterization5.jpg",
@@ -78,11 +78,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         icon: "Palette",
         images: [
           "/images/services/2d-3d-art1.jpg",
-          "/images/services/2d-3d-art2.jpg",
-          "/images/services/2d-3d-art3.jpg",
-          "/images/services/2d-3d-art4.jpg",
-          "/images/services/2d-3d-art5.jpg",
-          "/images/services/2d-3d-art6.jpg",
         ]
       },
       {
@@ -90,12 +85,11 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         description: "Complete book development from concept to final art.",
         icon: "BookOpen",
         images: [
-          "/images/services/children-books1.png",
-          "/images/services/children-books2.jpg",
+          "/images/services/children-books1.jpg",
+          "/images/services/children-books2.png",
           "/images/services/children-books3.jpg",
           "/images/services/children-books4.jpg",
           "/images/services/children-books5.jpg",
-          "/images/services/children-books6.jpg",
         ]
       },
       {
@@ -103,7 +97,7 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         description: "Sequential storytelling with dynamic visual impact.",
         icon: "Image",
         images: [
-          "/images/services/comics1..jpg",
+          "/images/services/comics1.jpg",
           "/images/services/comics2.jpg",
           "/images/services/comics3.jpg",
           "/images/services/comics4.jpg",
@@ -118,10 +112,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         images: [
           "/images/services/book-covers1.jpg",
           "/images/services/book-covers2.jpg",
-          "/images/services/book-covers3.jpg",
-          "/images/services/book-covers4.jpg",
-          "/images/services/book-covers5.jpg",
-          "/images/services/book-covers6.jpg",
         ]
       },
     ],
@@ -137,9 +127,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
           "/images/services/animation1.jpg",
           "/images/services/animation2.png",
           "/images/services/animation3.jpg",
-          "/images/services/animation4.jpg",
-          "/images/services/animation5.jpg",
-          "/images/services/animation6.jpg",
         ]
       },
       {
@@ -149,10 +136,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         images: [
           "/images/services/hyper-realistic1.jpg",
           "/images/services/hyper-realistic2.jpg",
-          "/images/services/hyper-realistic3.jpg",
-          "/images/services/hyper-realistic4.jpg",
-          "/images/services/hyper-realistic5.jpg",
-          "/images/services/hyper-realistic6.jpg",
         ]
       },
       {
@@ -162,10 +145,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         images: [
           "/images/services/kids-cartoons1.jpg",
           "/images/services/kids-cartoons2.jpg",
-          "/images/services/kids-cartoons3.jpg",
-          "/images/services/kids-cartoons4.jpg",
-          "/images/services/kids-cartoons5.jpg",
-          "/images/services/kids-cartoons6.jpg",
         ]
       },
       {
@@ -193,10 +172,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         images: [
           "/images/services/kdp1.jpg",
           "/images/services/kdp2.jpg",
-          "/images/services/kdp3.jpg",
-          "/images/services/kdp4.jpg",
-          "/images/services/kdp5.jpg",
-          "/images/services/kdp6.jpg",
         ]
       },
       {
@@ -206,10 +181,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         images: [
           "/images/services/author-guide1.png",
           "/images/services/author-guide2.png",
-          "/images/services/author-guide3.jpg",
-          "/images/services/author-guide4.jpg",
-          "/images/services/author-guide5.jpg",
-          "/images/services/author-guide6.jpg",
         ]
       },
       {
@@ -219,10 +190,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         images: [
           "/images/services/web-dev1.jpg",
           "/images/services/web-dev2.jpg",
-          "/images/services/web-dev3.jpg",
-          "/images/services/web-dev4.jpg",
-          "/images/services/web-dev5.jpg",
-          "/images/services/web-dev6.jpg",
         ]
       },
       {
@@ -231,11 +198,6 @@ export const SERVICE_CATEGORIES: ServiceCategory[] = [
         icon: "Layers",
         images: [
           "/images/services/pipelines1.jpg",
-          "/images/services/pipelines2.jpg",
-          "/images/services/pipelines3.jpg",
-          "/images/services/pipelines4.jpg",
-          "/images/services/pipelines5.jpg",
-          "/images/services/pipelines6.jpg",
         ]
       },
     ],
@@ -320,3 +282,4 @@ export const SOCIAL_LINKS = {
 };
 
 export const PDF_PORTFOLIO_PATH = "/portfolio/SourceIIStudio_Portfolio.pdf";
+

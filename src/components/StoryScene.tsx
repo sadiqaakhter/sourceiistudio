@@ -48,8 +48,10 @@ export default function StoryScene() {
               <div className="absolute -inset-4 border-2 border-studio-ink/10 hand-drawn-border rotate-1" />
               
               <div className="relative bg-[#FDFBF7] p-4 hand-drawn-border sketch-shadow overflow-hidden aspect-[4/5]">
-                <img 
-                  src="/images/about/storyscene.jpg"
+                <img loading="lazy" decoding="async" 
+                  src="/images/optimized/storyscene.webp"
+                  width={1152}
+                  height={768}
                   alt="Children's Illustration Style"
                   className="w-full h-full object-cover opacity-90 hover:scale-105 transition-all duration-700"
                 />
@@ -173,3 +175,4 @@ export default function StoryScene() {
 }
 
 import { PenTool } from 'lucide-react';
+

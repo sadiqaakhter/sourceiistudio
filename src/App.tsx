@@ -6,16 +6,26 @@
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home from './components/Home';
 import PageMetadata from './components/PageMetadata';
-import Portfolio from './components/Portfolio';
-import Services from './components/Services';
-import About from './components/About';
-import Contact from './components/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import BackgroundElements from './components/BackgroundElements';
 import CustomCursor from './components/CustomCursor';
 import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { Menu, X } from 'lucide-react';
+
+const Portfolio = lazy(() => import('./components/Portfolio'));
+const Services = lazy(() => import('./components/Services'));
+const About = lazy(() => import('./components/About'));
+const Contact = lazy(() => import('./components/Contact'));
+
+function NotFound() {
+  return <section className="min-h-screen px-6 pt-40 text-center">
+    <h1 className="text-4xl font-bold mb-6">Page not found</h1>
+    <p className="mb-6">Explore our illustration portfolio or tell us about your book.</p>
+    <Link to="/" className="underline mr-6">Home</Link>
+    <Link to="/portfolio" className="underline">Portfolio</Link>
+  </section>;
+}
 
 const NAV_LINKS = [
   { label: 'Home', to: '/' },
@@ -27,6 +37,7 @@ const NAV_LINKS = [
 
 function Navbar() {
   const location = useLocation();
+  const currentPath = location.pathname.replace(/\/$/, '') || '/';
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -65,7 +76,7 @@ function Navbar() {
         {/* Desktop Nav Links */}
         <div className="hidden md:flex items-center gap-1">
           {NAV_LINKS.map((link) => {
-            const isActive = location.pathname === link.to;
+            const isActive = currentPath === link.to;
             return (
               <Link
                 key={link.to}
@@ -101,6 +112,7 @@ function Navbar() {
             onClick={() => setMenuOpen((v) => !v)}
             className="md:hidden p-2 rounded-lg text-studio-ink/70 hover:text-studio-accent hover:bg-studio-accent/8 transition-colors"
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -118,7 +130,7 @@ function Navbar() {
             className="fixed top-[5rem] left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-sm bg-studio-bg/90 backdrop-blur-2xl border border-white/20 shadow-[0_16px_48px_rgba(44,36,33,0.12)] rounded-2xl p-4 flex flex-col gap-1"
           >
             {NAV_LINKS.map((link) => {
-              const isActive = location.pathname === link.to;
+              const isActive = currentPath === link.to;
               return (
                 <Link
                   key={link.to}
@@ -168,17 +180,22 @@ export default function App() {
         {/* Floating Glassmorphism Navigation */}
         <Navbar />
 
-        <main>
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-0 focus:left-0 focus:z-50 focus:bg-white focus:p-4">Skip to content</a>
+        <main id="main-content">
+          <Suspense fallback={<p role="status" className="min-h-screen px-6 pt-40 text-center">Loading page…</p>}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
+          </Suspense>
         </main>
       </div>
     </Router>
   );
 }
+
 

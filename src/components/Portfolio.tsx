@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import Flipbook from './Flipbook';
+import PortfolioPreview from './PortfolioPreview';
 import { ArrowLeft, Play, BookOpen, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { VIDEO_PORTFOLIO, CASE_STUDIES, PAGE_BANNERS } from '../constants';
@@ -18,6 +18,7 @@ export default function Portfolio() {
           <div className="absolute inset-0 bg-gradient-to-t from-studio-bg via-studio-bg/25 to-transparent z-10" />
           <img
             src={PAGE_BANNERS.portfolio}
+            fetchPriority="high"
             className="w-full h-full object-cover opacity-90"
             alt="Portfolio Banner"
             referrerPolicy="no-referrer"
@@ -83,7 +84,7 @@ export default function Portfolio() {
             exit={{ opacity: 0, x: 20 }}
             className="bg-studio-ink/5 rounded-3xl p-8 md:p-16 mb-24"
           >
-            <Flipbook />
+            <PortfolioPreview />
           </motion.div>
         )}
 
@@ -114,9 +115,9 @@ export default function Portfolio() {
                 }}
                 className="group relative aspect-video bg-studio-ink/5 overflow-hidden rounded-2xl cursor-pointer"
               >
-                <iframe
+                <iframe loading="lazy"
                   className="w-full h-full"
-                  src={`https://www.youtube.com/embed/${vid.youtubeId}`}
+                  src={`https://www.youtube-nocookie.com/embed/${vid.youtubeId}`}
                   title={vid.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
@@ -159,9 +160,9 @@ export default function Portfolio() {
               >
                 <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
                   <div className="aspect-video rounded-3xl overflow-hidden shadow-2xl bg-black">
-                    <iframe
+                    <iframe loading="lazy"
                       className="w-full h-full"
-                      src={`https://www.youtube.com/embed/${study.youtubeId}`}
+                      src={`https://www.youtube-nocookie.com/embed/${study.youtubeId}`}
                       title={study.title}
                       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                       allowFullScreen
@@ -191,3 +192,4 @@ export default function Portfolio() {
   </div>
   );
 }
+
