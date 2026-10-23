@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
 import { PAGE_BANNERS } from '../constants';
+import { CONTACT_EMAIL, CONTACT_FORM_ENDPOINT, emailDraftUrl, submitContact } from '../lib/contact';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -10,17 +11,33 @@ export default function Contact() {
     subject: '',
     message: ''
   });
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error' | 'email-ready'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
+  const submitting = useRef(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting.current) return;
+    if (!CONTACT_FORM_ENDPOINT) {
+      window.location.href = emailDraftUrl(formData);
+      setStatus('email-ready');
+      return;
+    }
+    submitting.current = true;
+    setErrorMessage('');
     setStatus('submitting');
-
-    // Simple simulation for "simple setup"
-    setTimeout(() => {
+    try {
+      await submitContact(CONTACT_FORM_ENDPOINT, formData);
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
-    }, 1000);
+    } catch (error) {
+      setErrorMessage(error instanceof Error && error.name !== 'AbortError'
+        ? error.message
+        : 'We could not confirm delivery. Please check your connection or email us directly.');
+      setStatus('error');
+    } finally {
+      submitting.current = false;
+    }
   };
 
   return (
@@ -150,8 +167,8 @@ export default function Contact() {
                 >
                   <CheckCircle2 className="w-20 h-20 text-studio-accent mb-6" />
                 </motion.div>
-                <h2 className="text-3xl font-bold uppercase mb-4">Message Sent!</h2>
-                <p className="text-studio-ink/60 mb-8">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
+                <h2 className="text-3xl font-bold uppercase mb-4">Message Submitted</h2>
+                <p role="status" className="text-studio-ink/60 mb-8">Thank you for reaching out. Your enquiry has been accepted. Our team will reply by email.</p>
                 <button 
                   onClick={() => setStatus('idle')}
                   className="px-8 py-4 bg-studio-accent text-white font-bold uppercase tracking-wider hover:bg-studio-ink hover:text-studio-bg transition-all"
@@ -163,13 +180,22 @@ export default function Contact() {
               <form 
                 onSubmit={handleSubmit} 
                 className="space-y-6"
+                aria-busy={status === 'submitting'}
               >
+                {!CONTACT_FORM_ENDPOINT && (
+                  <p className="text-sm text-studio-ink/70 leading-relaxed">
+                    Fill in your project details, then open an email draft and press Send in your email app.
+                    You can also email <a href={`mailto:${CONTACT_EMAIL}`} className="underline">{CONTACT_EMAIL}</a> directly.
+                  </p>
+                )}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <label className="text-xs font-mono uppercase tracking-widest text-studio-ink/40 ml-1">Full Name</label>
+                    <label htmlFor="contact-name" className="text-xs font-mono uppercase tracking-widest text-studio-ink/40 ml-1">Full Name</label>
                     <input 
                       required
                       name="name"
+                      id="contact-name"
+                      autoComplete="name"
                       type="text" 
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -178,10 +204,12 @@ export default function Contact() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-mono uppercase tracking-widest text-studio-ink/40 ml-1">Email Address</label>
+                    <label htmlFor="contact-email" className="text-xs font-mono uppercase tracking-widest text-studio-ink/40 ml-1">Email Address</label>
                     <input 
                       required
                       name="email"
+                      id="contact-email"
+                      autoComplete="email"
                       type="email" 
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
@@ -191,10 +219,11 @@ export default function Contact() {
                   </div>
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-mono uppercase tracking-widest text-studio-ink/40 ml-1">Subject</label>
+                  <label htmlFor="contact-subject" className="text-xs font-mono uppercase tracking-widest text-studio-ink/40 ml-1">Subject</label>
                   <input 
                     required
                     name="subject"
+                    id="contact-subject"
                     type="text" 
                     value={formData.subject}
                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
@@ -203,10 +232,11 @@ export default function Contact() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <label className="text-xs font-mono uppercase tracking-widest text-studio-ink/40 ml-1">Message</label>
+                  <label htmlFor="contact-message" className="text-xs font-mono uppercase tracking-widest text-studio-ink/40 ml-1">Message</label>
                   <textarea 
                     required
                     name="message"
+                    id="contact-message"
                     rows={6}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -219,11 +249,20 @@ export default function Contact() {
                   type="submit"
                   className="w-full py-5 bg-studio-accent text-white font-bold uppercase tracking-widest hover:bg-studio-ink hover:text-studio-bg transition-all flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed group"
                 >
-                  {status === 'submitting' ? 'Sending...' : 'Send Message'}
+                  {status === 'submitting' ? 'Sending...' : CONTACT_FORM_ENDPOINT ? 'Send Message' : 'Open Email Draft'}
                   <Send className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                 </button>
                 {status === 'error' && (
-                  <p className="text-red-500 text-sm text-center mt-4">Something went wrong. Please try again later.</p>
+                  <p role="alert" className="text-red-700 text-sm text-center mt-4">{errorMessage}{' '}
+                    <a href={emailDraftUrl(formData)} className="underline">Email your enquiry instead</a>.
+                  </p>
+                )}
+                {status === 'email-ready' && (
+                  <p role="status" className="text-studio-ink/70 text-sm mt-4">
+                    Your message has not been sent from this website. Press Send in your email app.
+                    If no app opened, copy your details and email <a href={`mailto:${CONTACT_EMAIL}`} className="underline">{CONTACT_EMAIL}</a>.
+                    Your details are still here.
+                  </p>
                 )}
               </form>
             )}
@@ -234,3 +273,4 @@ export default function Contact() {
   </div>
   );
 }
+
