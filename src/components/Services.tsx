@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SERVICE_CATEGORIES, PAGE_BANNERS, Service } from '../constants';
-import * as Icons from 'lucide-react';
+import { UserCircle, Palette, BookOpen, Image as ImageIcon, Layout, Play, Zap, Tv, Share2, Printer, Compass, Globe, Layers, HelpCircle } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, X, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const SERVICE_ICONS: Record<string, LucideIcon> = {
+  UserCircle, Palette, BookOpen, Image: ImageIcon, Layout, Play, Zap, Tv,
+  Share2, Printer, Compass, Globe, Layers,
+};
 
 const CATEGORY_COLORS: Record<string, string> = {
   'Illustration & Art': 'from-amber-500/10 to-studio-accent/5',
@@ -31,7 +37,7 @@ function ServiceModal({
 }) {
   const [imgIndex, setImgIndex] = useState(0);
   const images = item.images ?? [];
-  const IconComponent = (Icons as any)[item.icon] || Icons.HelpCircle;
+  const IconComponent = SERVICE_ICONS[item.icon] || HelpCircle;
 
   // Close on Escape
   useEffect(() => {
@@ -132,7 +138,7 @@ function ServiceModal({
                   }`}
                   style={{ borderColor: i === imgIndex ? accent : 'transparent' }}
                 >
-                  <img src={img} alt="" className="w-full h-full object-cover" />
+                  <img loading="lazy" decoding="async" src={img} alt="" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
@@ -225,6 +231,7 @@ export default function Services() {
           <div className="absolute inset-0 bg-gradient-to-t from-studio-bg via-studio-bg/25 to-transparent z-10" />
           <img
             src={PAGE_BANNERS.services}
+            fetchPriority="high"
             className="w-full h-full object-cover opacity-90"
             alt="Services Banner"
             referrerPolicy="no-referrer"
@@ -282,7 +289,7 @@ export default function Services() {
             {/* Cards grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {category.items.map((item, itemIndex) => {
-                const IconComponent = (Icons as any)[item.icon] || Icons.HelpCircle;
+                const IconComponent = SERVICE_ICONS[item.icon] || HelpCircle;
                 const accent = CATEGORY_ACCENT[category.category];
                 const cardId = `card-${catIndex}-${itemIndex}`;
                 const hasImages = item.images && item.images.length > 0;
@@ -335,7 +342,7 @@ export default function Services() {
                         <div className="flex -space-x-2">
                           {item.images!.slice(0, 2).map((img, i) => (
                             <div key={i} className="w-8 h-8 rounded-full overflow-hidden border-2 border-studio-bg">
-                              <img
+                              <img loading="lazy" decoding="async"
                                 src={img}
                                 alt=""
                                 className="w-full h-full object-cover"
@@ -411,3 +418,4 @@ export default function Services() {
     </div>
   );
 }
+

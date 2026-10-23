@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SOCIAL_LINKS, PAGE_BANNERS } from '../constants';
-import Flipbook from './Flipbook';
+import PortfolioPreview from './PortfolioPreview';
 import StoryScene from './StoryScene';
 import { PAGES } from '../pageMetadata';
 
@@ -43,6 +43,9 @@ export default function Home() {
           <div className="absolute inset-0 bg-gradient-to-t from-studio-bg via-studio-bg/20 to-transparent z-10" />
           <img
             src={PAGE_BANNERS.home}
+            fetchPriority="high"
+            width={1920}
+            height={1072}
             className="w-full h-full object-cover opacity-90"
             alt="Source II Studio"
             referrerPolicy="no-referrer"
@@ -392,7 +395,7 @@ export default function Home() {
               transition={{ duration: 1, ease: 'easeOut' }}
               className="aspect-video rounded-2xl overflow-hidden border border-studio-ink/10 relative group"
             >
-              <img
+              <img loading="lazy" decoding="async"
                 src="/images/about/studio-environment - Copy.jpg"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-80"
                 alt="Studio Work Environment"
@@ -482,7 +485,7 @@ export default function Home() {
           </motion.p>
         </div>
 
-        <Flipbook />
+        <PortfolioPreview />
 
         <div className="flex justify-center mt-12">
           <Link
@@ -516,13 +519,13 @@ export default function Home() {
                 Send a Message
               </Link>
               <div className="flex gap-6 pt-8">
-                <a href={SOCIAL_LINKS.instagram} target="_blank" rel="noopener noreferrer" className="p-4 border border-studio-ink/10 rounded-full hover:bg-studio-accent hover:text-studio-bg hover:scale-110 transition-all">
+                <a href={SOCIAL_LINKS.instagram} aria-label="Source II Studio on Instagram" target="_blank" rel="noopener noreferrer" className="p-4 border border-studio-ink/10 rounded-full hover:bg-studio-accent hover:text-studio-bg hover:scale-110 transition-all">
                   <Instagram className="w-6 h-6" />
                 </a>
-                <a href={SOCIAL_LINKS.youtube} target="_blank" rel="noopener noreferrer" className="p-4 border border-studio-ink/10 rounded-full hover:bg-studio-accent hover:text-studio-bg hover:scale-110 transition-all">
+                <a href={SOCIAL_LINKS.youtube} aria-label="Source II Studio on YouTube" target="_blank" rel="noopener noreferrer" className="p-4 border border-studio-ink/10 rounded-full hover:bg-studio-accent hover:text-studio-bg hover:scale-110 transition-all">
                   <Youtube className="w-6 h-6" />
                 </a>
-                <a href={SOCIAL_LINKS.amazon} target="_blank" rel="noopener noreferrer" className="p-4 border border-studio-ink/10 rounded-full hover:bg-studio-accent hover:text-studio-bg hover:scale-110 transition-all">
+                <a href={SOCIAL_LINKS.amazon} aria-label="Books by Sadiqa Akhter on Amazon" target="_blank" rel="noopener noreferrer" className="p-4 border border-studio-ink/10 rounded-full hover:bg-studio-accent hover:text-studio-bg hover:scale-110 transition-all">
                   <ExternalLink className="w-6 h-6" />
                 </a>
               </div>
@@ -559,4 +562,5 @@ export default function Home() {
     </div>
   );
 }
+
 
