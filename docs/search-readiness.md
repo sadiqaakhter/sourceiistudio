@@ -1,6 +1,6 @@
 # Source II Studio search readiness
 
-Checked 23 October 2026. These changes support discovery; they do not guarantee search rankings or AI recommendations.
+Updated 24 October 2026. These changes support discovery; they do not guarantee search rankings or AI recommendations.
 
 | Checklist item | Status |
 | --- | --- |
@@ -8,8 +8,8 @@ Checked 23 October 2026. These changes support discovery; they do not guarantee 
 | Google Search Console | Owner verification tag retained. Owner screenshots show the verified site. |
 | Submit sitemap | Owner screenshot confirms Success and five discovered pages. Sitemap now uses the final trailing-slash URLs. |
 | Request homepage indexing | Owner screenshot confirms the homepage is already indexed. A new crawl request can be made in Search Console after updates. |
-| Bing Webmaster Tools | Pending account connection. Import sourceiistudio.com from the verified Google Search Console account at https://www.bing.com/webmasters/. |
-| Google Analytics | Pending the owner's GA4 web-stream measurement ID, in the form G-XXXXXXXXXX. No tracking code has been installed without a real account ID. |
+| Bing Webmaster Tools | Owner screenshots confirm that the homepage is indexed; the live SEO check reports no SEO/GEO issues. Schema.org validation reports zero errors and warnings. |
+| Google Analytics | Google tag installed for the owner's measurement ID G-KC9V86TGVN. Enhanced measurement should retain browser-history page changes for React navigation. Receipt of events must be confirmed in the owner's Realtime report or Tag Assistant. |
 | Google Business Profile | Create only if the studio qualifies through real in-person customer contact. Online-only businesses are not eligible. |
 | HTTPS | Existing production website is served over HTTPS. |
 | Unique page titles | Each of the five routes has a unique title, description, canonical URL, and sharing metadata. |
@@ -26,8 +26,8 @@ Checked 23 October 2026. These changes support discovery; they do not guarantee 
 
 ## Still needed from the owner
 
-- GA4 measurement ID to connect visitor analytics.
-- Bing import through the owner's Google account, or a Bing verification meta tag for installation.
+- Confirm live analytics events in GA4 Realtime or Tag Assistant; the website tag alone does not prove events have been received.
+- In GA4, retain Enhanced measurement > Page views > Page changes based on browser history events. No duplicate manual page_view handler is installed.
 - Verified Formspree form endpoint to enable direct submissions. The current contact page honestly opens an email draft; visitors must send it in their email app.
 
 ## Validation
