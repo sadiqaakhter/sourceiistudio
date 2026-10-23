@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { SOCIAL_LINKS, PAGE_BANNERS } from '../constants';
 import Flipbook from './Flipbook';
 import StoryScene from './StoryScene';
+import { PAGES } from '../pageMetadata';
 
 const STATS = [
   { value: '11+', label: 'Years' },
@@ -146,7 +147,7 @@ export default function Home() {
               >
                 <span className="w-2 h-2 rounded-full bg-studio-accent animate-pulse" />
                 <span className="text-studio-accent font-mono text-[11px] tracking-widest uppercase">
-                  Est. 2015 · Global Digital Studio
+                  Sadiqa Akhter · Source II Studio
                 </span>
               </motion.div>
 
@@ -155,7 +156,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="text-[clamp(3.5rem,9vw,7.5rem)] font-bold leading-[0.88] tracking-tighter mb-8"
+                className="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1] tracking-tighter mb-8"
               >
                 <motion.span
                   initial={{ opacity: 0, x: -32 }}
@@ -163,7 +164,7 @@ export default function Home() {
                   transition={{ delay: 0.3, duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
                   className="block uppercase"
                 >
-                  We Craft
+                  Children's
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, x: 32 }}
@@ -171,7 +172,7 @@ export default function Home() {
                   transition={{ delay: 0.5, duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
                   className="block text-studio-accent font-serif italic normal-case"
                 >
-                  Stories
+                  Book
                 </motion.span>
                 <motion.span
                   initial={{ opacity: 0, x: -32 }}
@@ -179,7 +180,7 @@ export default function Home() {
                   transition={{ delay: 0.7, duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
                   className="block uppercase"
                 >
-                  That Move
+                  Illustration
                 </motion.span>
               </motion.h1>
 
@@ -190,8 +191,7 @@ export default function Home() {
                 transition={{ delay: 0.65, duration: 0.7 }}
                 className="text-lg md:text-xl text-studio-ink/60 max-w-xl font-serif italic mb-10 leading-relaxed"
               >
-                Crafting world-class illustrations, animations, and high-tech digital content for
-                global visionaries.
+                {PAGES['/'].summary}
               </motion.p>
 
               {/* CTA buttons */}
@@ -273,7 +273,7 @@ export default function Home() {
                   />
                   <text className="font-mono" fontSize="5.2" fill="rgba(44,36,33,0.22)" letterSpacing="1">
                     <textPath href="#ringText">
-                      • ILLUSTRATION • ANIMATION • AI CONTENT • PUBLISHING •
+                      • ILLUSTRATION • ANIMATION • CHARACTERS • PUBLISHING •
                     </textPath>
                   </text>
                 </svg>
@@ -292,7 +292,7 @@ export default function Home() {
               {[
                 { label: 'Illustration', angle: -70 },
                 { label: 'Animation', angle: 20 },
-                { label: 'AI Content', angle: 110 },
+                { label: 'Characters', angle: 110 },
                 { label: 'Publishing', angle: 200 },
               ].map((item, i) => {
                 const rad = (item.angle * Math.PI) / 180;
@@ -364,13 +364,13 @@ export default function Home() {
               transition={{ duration: 0.8 }}
             >
               <h2 className="text-4xl md:text-6xl font-bold tracking-tighter uppercase mb-8">
-                A Legacy of <br />
-                <span className="text-studio-accent">Creative Excellence</span>
+                Meet <br />
+                <span className="text-studio-accent">Sadiqa Akhter</span>
               </h2>
               <p className="text-xl leading-relaxed text-studio-ink/70 font-serif italic mb-8">
-                Source II Studio is a high-tech graphics powerhouse built on over 11 years of market
-                excellence. We merge traditional artistic mastery with advanced digital workflows to
-                deliver world-class content globally.
+                Sadiqa Akhter is a children's book illustrator and creative director with over 11 years
+                of experience. At Source II Studio, she leads illustration and publishing projects for
+                authors and publishers, from character development to final book layouts.
               </p>
               <Link
                 to="/about"
@@ -379,6 +379,11 @@ export default function Home() {
                 Meet Our Founders{' '}
                 <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
               </Link>
+              <p className="text-base leading-relaxed text-studio-ink/70 mt-6">
+                Explore <a className="underline hover:text-studio-accent" href="https://www.behance.net/thesadiqaakhter" target="_blank" rel="noopener noreferrer">Sadiqa's artwork on Behance</a>,{' '}
+                <a className="underline hover:text-studio-accent" href={SOCIAL_LINKS.amazon} target="_blank" rel="noopener noreferrer">her Amazon author page</a>, and{' '}
+                <a className="underline hover:text-studio-accent" href={SOCIAL_LINKS.fiverr} target="_blank" rel="noopener noreferrer">client reviews on Fiverr</a>.
+              </p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -428,9 +433,9 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {[
-            { title: 'Illustration', icon: PenTool, desc: 'Expertly crafted digital solutions for global brands.' },
+            { title: 'Illustration', icon: PenTool, desc: 'Picture-book scenes and expressive artwork for young readers.' },
             { title: 'Animation', icon: Play, desc: 'Fluid motion graphics and character animation.' },
-            { title: 'AI Content', icon: Sparkles, desc: 'Cutting-edge visuals with lifelike detail.' },
+            { title: 'Characters', icon: Sparkles, desc: 'Character sheets and consistent characters throughout your book.' },
             { title: 'Publishing', icon: Layers, desc: 'Expert formatting and setup for Amazon publishing.' },
           ].map((service, index) => (
             <motion.div
@@ -554,3 +559,4 @@ export default function Home() {
     </div>
   );
 }
+

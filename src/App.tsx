@@ -5,6 +5,7 @@
 
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home from './components/Home';
+import PageMetadata from './components/PageMetadata';
 import Portfolio from './components/Portfolio';
 import Services from './components/Services';
 import About from './components/About';
@@ -149,6 +150,7 @@ export default function App() {
 
   return (
     <Router>
+      <PageMetadata />
       <ScrollToTop />
       <div className="relative min-h-screen bg-studio-bg text-studio-ink selection:bg-studio-accent selection:text-studio-bg lg:cursor-none">
         {/* Global Background Elements */}
@@ -179,3 +181,4 @@ export default function App() {
     </Router>
   );
 }
+

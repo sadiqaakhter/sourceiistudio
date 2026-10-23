@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { FOUNDERS, PAGE_BANNERS } from '../constants';
+import { PAGES } from '../pageMetadata';
 
 export default function About() {
   return (
@@ -27,7 +28,7 @@ export default function About() {
             The <span className="text-studio-accent">Founders</span>
           </h1>
           <p className="text-base md:text-lg text-studio-ink/75 font-serif italic max-w-xl leading-relaxed">
-            Source II Studio is a high-tech graphics powerhouse built on over 11 years of market excellence. We merge traditional artistic mastery with advanced digital workflows to deliver world-class content globally.
+            {PAGES['/about'].summary}
           </p>
         </motion.div>
       </section>
@@ -135,3 +136,4 @@ export default function About() {
     </div>
   );
 }
+
