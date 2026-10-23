@@ -1,7 +1,7 @@
 export const CONTACT_EMAIL = 'hello@sourceiistudio.com';
 
-// Set only after the studio owner confirms the Formspree endpoint.
-export const CONTACT_FORM_ENDPOINT: string = '';
+// Studio-owned endpoint explicitly confirmed by the owner.
+export const CONTACT_FORM_ENDPOINT: string = 'https://formspree.io/f/mnjlqzjk';
 
 export type ContactFields = { name: string; email: string; subject: string; message: string };
 
