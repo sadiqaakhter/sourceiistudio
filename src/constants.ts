@@ -243,16 +243,16 @@ export const VIDEO_PORTFOLIO = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     title: "AI to Hand-Drawn: Storybook Cover Design",
-    description: "A comprehensive case study showing our unique workflow of blending AI concepts with hand-drawn artistry for professional storybook covers.",
+    description: "A client supplied an AI-generated character reference and needed a hand-drawn, whimsical storybook cover. Sadiqa Akhter recreated the character on her drawing tablet, developed five additional characters, and refined poses, colour, and background choices through client feedback. Watch the drawing and revision process in the video.",
     image: "",
-    steps: ["AI Conceptualization", "Sketching & Line Art", "Digital Painting", "Typography & Layout"],
+    steps: ["Client Reference Review", "Hand-Drawn Character Development", "Cover Composition", "Client Feedback & Revisions"],
     youtubeId: "jMXTDK3fRso"
   },
   {
     title: "Children's Story Book Promo Trailer",
-    description: "Transforming static children's book illustrations into a dynamic cinematic trailer that captures the magic of storytelling through fluid motion.",
+    description: "A children’s storybook promotional trailer produced by Source II Studio. Watch the video to see the studio’s illustration and animation work presented as a short promotional piece for a book project.",
     image: "",
-    steps: ["Asset Preparation", "Scene Staging", "2D Animation", "Sound Design"],
+    steps: ["Book Promotion", "Illustration", "Animation"],
     youtubeId: "9l0Eu07IZNg"
   },
   {
