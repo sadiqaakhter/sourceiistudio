@@ -5,6 +5,8 @@ import { ArrowLeft, Play, BookOpen, Search } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { VIDEO_PORTFOLIO, CASE_STUDIES, PAGE_BANNERS } from '../constants';
 
+import { PUBLISHED_BOOKS } from '../searchContent';
+
 type Tab = 'flipbook' | 'animation' | 'cases';
 
 export default function Portfolio() {
@@ -54,13 +56,9 @@ export default function Portfolio() {
         <h2 id="published-books-heading" className="text-3xl md:text-4xl font-bold tracking-tight mt-3 mb-4">Books illustrated by Sadiqa Akhter</h2>
         <p className="text-studio-ink/70 max-w-2xl mb-8">Selected children’s books with Sadiqa Akhter credited as illustrator on the cover.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { title: "Life Stinks! So Why Can’t I?", author: "J. Allen Shaw" },
-            { title: "Little Leo’s DJ Dream", author: "Patrick Chow" },
-            { title: "Miles and the Grumpy Pants", author: "" },
-          ].map((book) => (
+          {PUBLISHED_BOOKS.map((book) => (
             <article key={book.title} className="rounded-2xl border border-studio-ink/10 bg-studio-ink/5 p-7">
-              <BookOpen aria-hidden="true" className="w-7 h-7 text-studio-accent mb-5" />
+              <img src={book.image} alt={`${book.title} cover, illustrated by Sadiqa Akhter`} loading="lazy" decoding="async" width="400" height="480" className="w-full h-72 object-contain bg-white rounded-xl mb-5" />
               <h3 className="text-2xl font-bold tracking-tight mb-4">{book.title}</h3>
               {book.author && <p className="text-sm text-studio-ink/70 mb-2">Author: {book.author}</p>}
               <p className="text-sm text-studio-ink/70">Illustrator: Sadiqa Akhter</p>

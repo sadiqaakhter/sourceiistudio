@@ -1,3 +1,4 @@
+import { trackAcceptedEnquiry } from '../lib/analytics';
 import React, { useRef, useState } from 'react';
 import { motion } from 'motion/react';
 import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
@@ -28,6 +29,7 @@ export default function Contact() {
     setStatus('submitting');
     try {
       await submitContact(CONTACT_FORM_ENDPOINT, formData);
+      trackAcceptedEnquiry();
       setStatus('success');
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {

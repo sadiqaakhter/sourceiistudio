@@ -1,3 +1,4 @@
+import { CLIENT_FAQS } from '../searchContent';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { SERVICE_CATEGORIES, PAGE_BANNERS, Service } from '../constants';
@@ -414,6 +415,18 @@ export default function Services() {
             </Link>
           </motion.div>
         </div>
+      </section>
+      <section aria-labelledby="client-faq-heading" className="px-6 md:px-12 lg:px-24 py-16 max-w-6xl mx-auto">
+        <h2 id="client-faq-heading" className="text-3xl md:text-4xl font-bold tracking-tight mb-8">Children’s book illustration: common questions</h2>
+        <div className="divide-y divide-studio-ink/10">
+          {CLIENT_FAQS.map(({ question, answer }) => (
+            <details key={question} className="py-5">
+              <summary className="font-bold text-lg cursor-pointer">{question}</summary>
+              <p className="mt-3 text-studio-ink/75 leading-relaxed">{answer}</p>
+            </details>
+          ))}
+        </div>
+        <Link to="/contact/" className="inline-block mt-7 font-bold text-studio-accent underline underline-offset-4">Discuss your book project</Link>
       </section>
     </div>
   );

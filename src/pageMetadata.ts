@@ -1,3 +1,4 @@
+import { PUBLISHED_BOOKS } from './searchContent';
 export const SITE_URL = 'https://sourceiistudio.com';
 
 export const PAGES = {
@@ -65,3 +66,25 @@ export const STUDIO_SCHEMA = {
     },
   ],
 };
+
+
+export function getPageSchema(path: string) {
+  const page = PAGES[path as keyof typeof PAGES];
+  if (!page) return null;
+  const url = `${SITE_URL}${path === '/' ? '/' : `${path}/`}`;
+  const extra: object[] = [];
+  if (path !== '/') extra.push({ '@type': 'BreadcrumbList', '@id': `${url}#breadcrumbs`, itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_URL}/` },
+    { '@type': 'ListItem', position: 2, name: page.heading, item: url },
+  ] });
+  if (path === '/portfolio') extra.push(...PUBLISHED_BOOKS.map((book, index) => ({
+    '@type': 'Book', '@id': `${url}#book-${index + 1}`, name: book.title,
+    image: `${SITE_URL}${book.image}`, illustrator: { '@id': `${SITE_URL}/#sadiqa-akhter` },
+    ...(book.author ? { author: { '@type': 'Person', name: book.author } } : {}),
+  })));
+  return { ...STUDIO_SCHEMA, '@graph': [...STUDIO_SCHEMA['@graph'], {
+    '@type': 'WebPage', '@id': `${url}#page`, url, name: page.title,
+    description: page.description, about: { '@id': `${SITE_URL}/#studio` },
+    ...(path !== '/' ? { breadcrumb: { '@id': `${url}#breadcrumbs` } } : {}),
+  }, ...extra] };
+}

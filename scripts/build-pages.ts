@@ -1,8 +1,9 @@
 // Generate readable HTML and direct-entry pages for the existing React routes.
 // All visitors receive the same content; React replaces this fallback when loaded.
 import { readFile, writeFile, mkdir } from 'node:fs/promises';
-import { PAGES, SITE_URL, STUDIO_SCHEMA } from '../src/pageMetadata';
+import { PAGES, SITE_URL, getPageSchema } from '../src/pageMetadata';
 import { SERVICE_CATEGORIES, FOUNDERS } from '../src/constants';
+import { PUBLISHED_BOOKS, CLIENT_FAQS } from '../src/searchContent';
 
 const escape = (value: string) => value.replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
@@ -13,10 +14,7 @@ const navigation = `<nav aria-label="Main navigation">${Object.entries(PAGES).ma
 
 for (const [path, page] of Object.entries(PAGES)) {
   const url = `${SITE_URL}${path === '/' ? '/' : `${path}/`}`;
-  const structuredData = { ...STUDIO_SCHEMA, '@graph': [...STUDIO_SCHEMA['@graph'], {
-    '@type': 'WebPage', '@id': `${url}#page`, url, name: page.title,
-    description: page.description, about: { '@id': `${SITE_URL}/#studio` },
-  }] };
+  const structuredData = getPageSchema(path);
   const head = `<title>${escape(page.title)}</title>
     <meta name="description" content="${escape(page.description)}" />
     <link rel="canonical" href="${url}" />
@@ -30,10 +28,12 @@ for (const [path, page] of Object.entries(PAGES)) {
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="${escape(page.title)}" />
     <meta name="twitter:description" content="${escape(page.description)}" />
-    <script type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>`;
-  const details = path === '/services' ? SERVICE_CATEGORIES.map(category =>
+    <script id="page-structured-data" type="application/ld+json">${JSON.stringify(structuredData).replace(/</g, '\\u003c')}</script>`;
+  let details = path === '/services' ? SERVICE_CATEGORIES.map(category =>
     `<section><h2>${escape(category.category)}</h2>${category.items.map(service => `<h3>${escape(service.title)}</h3><p>${escape(service.description)}</p>`).join('')}</section>`).join('')
     : path === '/about' ? FOUNDERS.map(founder => `<section><h2>${escape(founder.name)}</h2><p>${escape(founder.role)}</p><p>${escape(founder.bio)}</p></section>`).join('') : '';
+  if (path === '/services') details += `<section><h2>Children’s book illustration: common questions</h2>${CLIENT_FAQS.map(faq => `<h3>${escape(faq.question)}</h3><p>${escape(faq.answer)}</p>`).join('')}</section>`;
+  if (path === '/portfolio') details += `<section><h2>Books illustrated by Sadiqa Akhter</h2>${PUBLISHED_BOOKS.map(book => `<article><h3>${escape(book.title)}</h3><img src="${book.image}" alt="${escape(book.title)} cover, illustrated by Sadiqa Akhter" width="240" loading="lazy" />${book.author ? `<p>Author: ${escape(book.author)}</p>` : ''}<p>Illustrator: Sadiqa Akhter</p></article>`).join('')}</section>`;
   const content = `<div id="root"><main style="max-width:70rem;margin:auto;padding:3rem 1.5rem;font-family:system-ui;line-height:1.7">
     <p>Source II Studio · Sadiqa Akhter</p>${navigation}
     <h1>${escape(page.heading)}</h1><p>${escape(page.summary)}</p>

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { PAGES, SITE_URL } from '../pageMetadata';
+import { PAGES, SITE_URL, getPageSchema } from '../pageMetadata';
 
 export default function PageMetadata() {
   const { pathname } = useLocation();
@@ -14,6 +14,15 @@ export default function PageMetadata() {
       document.head.appendChild(robots);
     }
     robots.content = page ? 'index, follow, max-image-preview:large' : 'noindex, follow';
+    document.head.querySelectorAll('script[type="application/ld+json"]').forEach(tag => tag.remove());
+    const schema = getPageSchema(path);
+    if (schema) {
+      const tag = document.createElement('script');
+      tag.id = 'page-structured-data';
+      tag.type = 'application/ld+json';
+      tag.textContent = JSON.stringify(schema);
+      document.head.appendChild(tag);
+    }
     if (!page) {
       document.title = 'Page not found | Source II Studio';
       document.head.querySelector('link[rel="canonical"]')?.remove();
