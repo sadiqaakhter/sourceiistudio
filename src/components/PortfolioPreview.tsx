@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState } from 'react';
+import { trackStudioEvent } from '../lib/analytics';
 import { PDF_PORTFOLIO_PATH } from '../constants';
 
 const Flipbook = lazy(() => import('./Flipbook'));
@@ -11,7 +12,7 @@ export default function PortfolioPreview() {
     </Suspense> : <>
       <h3 className="text-2xl font-bold mb-4">Explore our illustration portfolio</h3>
       <p className="text-studio-ink/70 mb-6">View characters, storybook artwork, and publishing examples.</p>
-      <button type="button" onClick={() => setOpen(true)} className="px-8 py-4 rounded-xl bg-studio-accent text-white font-bold">
+      <button type="button" onClick={() => { trackStudioEvent('portfolio_open', { portfolio_format: 'interactive' }); setOpen(true); }} className="px-8 py-4 rounded-xl bg-studio-accent text-white font-bold">
         Open Interactive Portfolio
       </button>
       <p className="text-sm text-studio-ink/60 mt-4">The full portfolio is a 30 MB PDF. Open it when you’re ready.</p>
