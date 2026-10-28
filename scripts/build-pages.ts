@@ -77,3 +77,14 @@ const notFound = template
   .replace('<div id="root"></div>', `<div id="root"><main><h1>Page not found</h1>${navigation}<p>Explore our illustration services or contact Source II Studio.</p></main></div>`);
 await writeFile('dist/404.html', notFound);
 
+
+
+// Legacy WordPress URLs: instant HTML redirects for static GitHub Pages hosting.
+for (const [oldPath, destination] of Object.entries({
+  '/about-us': '/about/', '/contact-us': '/contact/', '/service': '/services/',
+})) {
+  const target = SITE_URL + destination;
+  const html = `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${target}"><title>Page moved | Source II Studio</title></head><body><p>This page has moved. <a href="${target}">Continue to Source II Studio</a>.</p></body></html>`;
+  await mkdir(`dist${oldPath}`, { recursive: true });
+  await writeFile(`dist${oldPath}/index.html`, html);
+}
