@@ -27,7 +27,7 @@ export interface CaseStudy {
 }
 
 export const PAGE_BANNERS = {
-  home: "/images/optimized/studio-culture.webp",
+  home: "/images/optimized/home-1440.webp",
   about: "/images/optimized/about-banner.webp",
   services: "/images/banners/services.jpg",
   portfolio: "/images/banners/portfolio.jpg",

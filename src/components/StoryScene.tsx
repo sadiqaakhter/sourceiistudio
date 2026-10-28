@@ -49,7 +49,9 @@ export default function StoryScene() {
               
               <div className="relative bg-[#FDFBF7] p-4 hand-drawn-border sketch-shadow overflow-hidden aspect-[4/5]">
                 <img loading="lazy" decoding="async" 
-                  src="/images/optimized/storyscene.webp"
+                  src="/images/optimized/story-1152.webp"
+                  srcSet="/images/optimized/story-640.webp 640w, /images/optimized/story-1152.webp 1152w"
+                  sizes="(min-width: 1024px) 50vw, 100vw"
                   width={1152}
                   height={768}
                   alt="Children's Illustration Style"

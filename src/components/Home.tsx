@@ -42,7 +42,9 @@ export default function Home() {
         >
           <div className="absolute inset-0 bg-gradient-to-t from-studio-bg via-studio-bg/20 to-transparent z-10" />
           <img
-            src={PAGE_BANNERS.home}
+            src="/images/optimized/home-1440.webp"
+            srcSet="/images/optimized/home-768.webp 768w, /images/optimized/home-1440.webp 1440w"
+            sizes="100vw"
             fetchPriority="high"
             width={1920}
             height={1072}
@@ -143,7 +145,7 @@ export default function Home() {
             <div>
               {/* Animated badge */}
               <motion.div
-                initial={{ opacity: 0, y: 18 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.7 }}
                 className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full bg-studio-accent/10 border border-studio-accent/20 mb-8"
@@ -156,13 +158,13 @@ export default function Home() {
 
               {/* Headline */}
               <motion.h1
-                initial={{ opacity: 0 }}
+                initial={false}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
                 className="text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1] tracking-tighter mb-8"
               >
                 <motion.span
-                  initial={{ opacity: 0, x: -32 }}
+                  initial={false}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.3, duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
                   className="block uppercase"
@@ -170,7 +172,7 @@ export default function Home() {
                   Children's
                 </motion.span>
                 <motion.span
-                  initial={{ opacity: 0, x: 32 }}
+                  initial={false}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5, duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
                   className="block text-studio-accent font-serif italic normal-case"
@@ -178,7 +180,7 @@ export default function Home() {
                   Book
                 </motion.span>
                 <motion.span
-                  initial={{ opacity: 0, x: -32 }}
+                  initial={false}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.7, duration: 0.9, ease: [0.21, 0.47, 0.32, 0.98] }}
                   className="block uppercase"
@@ -189,7 +191,7 @@ export default function Home() {
 
               {/* Subtitle */}
               <motion.p
-                initial={{ opacity: 0, y: 18 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.65, duration: 0.7 }}
                 className="text-lg md:text-xl text-studio-ink/60 max-w-xl font-serif italic mb-10 leading-relaxed"
@@ -199,7 +201,7 @@ export default function Home() {
 
               {/* CTA buttons */}
               <motion.div
-                initial={{ opacity: 0, y: 18 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
                 className="flex flex-wrap gap-4 mb-14"
@@ -220,7 +222,7 @@ export default function Home() {
 
               {/* Stats row */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
+                initial={false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1, duration: 0.6 }}
                 className="flex flex-wrap gap-8 pt-8 border-t border-studio-ink/10"
@@ -228,7 +230,7 @@ export default function Home() {
                 {STATS.map((stat, i) => (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, y: 12 }}
+                    initial={false}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.1 + i * 0.07 }}
                     className="flex flex-col"
@@ -305,7 +307,7 @@ export default function Home() {
                 return (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, scale: 0 }}
+                    initial={false}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 1.0 + i * 0.15, type: 'spring', stiffness: 260, damping: 20 }}
                     style={{
@@ -396,7 +398,9 @@ export default function Home() {
               className="aspect-video rounded-2xl overflow-hidden border border-studio-ink/10 relative group"
             >
               <img loading="lazy" decoding="async"
-                src="/images/about/studio-environment - Copy.jpg"
+                src="/images/optimized/environment-1280.webp"
+                srcSet="/images/optimized/environment-640.webp 640w, /images/optimized/environment-1280.webp 1280w"
+                sizes="(min-width: 1024px) 45vw, 90vw"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 opacity-80"
                 alt="Studio Work Environment"
                 referrerPolicy="no-referrer"
