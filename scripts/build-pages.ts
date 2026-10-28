@@ -8,7 +8,15 @@ import { PUBLISHED_BOOKS, CLIENT_FAQS } from '../src/searchContent';
 const escape = (value: string) => value.replace(/[&<>"']/g, char => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 })[char]!);
-const template = await readFile('dist/index.html', 'utf8');
+let template = await readFile('dist/index.html', 'utf8');
+// The small shared stylesheet is embedded in every entry page so first paint
+// does not wait for an additional blocking stylesheet request.
+const stylesheets = [...template.matchAll(/<link\b[^>]*rel="stylesheet"[^>]*href="(\/assets\/[^"]+\.css)"[^>]*>/g)];
+for (const [tag, href] of stylesheets) {
+  const css = await readFile(`dist${href}`, 'utf8');
+  template = template.replace(tag, `<style data-app-styles>${css.replace(/<\/style/gi, '<\\/style')}</style>`);
+}
+
 const initialStyles = `<style id="initial-page-styles">
 .initial-page{background:#f8f7f4;color:#2c2421;min-height:100vh;font-family:Arial,sans-serif;line-height:1.65}.initial-page *{box-sizing:border-box}.initial-page a{color:#147b79;text-decoration:underline;text-underline-offset:4px}.initial-nav{display:flex;align-items:center;gap:24px;justify-content:space-between;padding:22px 5%;background:#fff;border-bottom:1px solid #e6e2da}.initial-page .initial-brand{font-size:20px;font-weight:800;white-space:nowrap;text-decoration:none;color:#2c2421}.initial-brand span{color:#1a9391}.initial-nav nav{display:flex;flex-wrap:wrap;gap:12px;font-size:12px}.initial-nav nav a{text-decoration:none}.initial-page .initial-button{display:inline-block;background:#168b89;color:white;padding:12px 20px;border-radius:10px;text-decoration:none;font-size:13px;font-weight:bold}.initial-hero{padding:88px 7% 64px;background-size:cover;background-position:center;min-height:390px}.initial-page .initial-eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:12px;color:#147b79}.initial-page h1{font-size:clamp(32px,5vw,64px);font-weight:800;line-height:1.08;max-width:850px;margin:16px 0 24px;letter-spacing:-1.5px}.initial-hero>p:not(.initial-eyebrow){max-width:680px;font-size:18px;margin-bottom:26px}.initial-body{max-width:1200px;margin:auto;padding:56px 6%}.initial-page h2{font-size:28px;line-height:1.25;font-weight:700;margin:0 0 24px}.initial-page h3{font-size:20px;line-height:1.3;font-weight:700;margin:24px 0 12px}.initial-body>section{margin-bottom:48px}.initial-portfolio>section:first-child{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}.initial-portfolio>section:first-child>h2{grid-column:1/-1}.initial-portfolio article{display:flex;flex-direction:column;padding:24px;border:1px solid #dfded8;border-radius:18px;background:white}.initial-portfolio article h3{order:1;margin-top:20px}.initial-portfolio article img{order:0;width:100%;height:290px;object-fit:contain}.initial-portfolio article p{order:2;font-size:14px;margin:4px 0}.initial-links{border-top:1px solid #dfded8;padding-top:32px}.initial-actions{display:flex;align-items:center;flex-wrap:wrap;gap:20px;margin:24px 0}.initial-page a:focus-visible{outline:3px solid #147b79;outline-offset:5px}@media(max-width:760px){.initial-nav{flex-wrap:wrap;gap:14px;padding:18px 6%}.initial-nav nav{order:3;width:100%;font-size:12px;gap:10px}.initial-nav>.initial-button{margin-left:auto}.initial-hero{padding:52px 6% 44px;min-height:320px}.initial-body{padding-top:36px}.initial-portfolio>section:first-child{grid-template-columns:1fr}.initial-portfolio article img{height:300px}}
 </style>`;
@@ -77,14 +85,13 @@ const notFound = template
   .replace('<div id="root"></div>', `<div id="root"><main><h1>Page not found</h1>${navigation}<p>Explore our illustration services or contact Source II Studio.</p></main></div>`);
 await writeFile('dist/404.html', notFound);
 
-
-
-// Legacy WordPress URLs: instant HTML redirects for static GitHub Pages hosting.
+// Legacy WordPress URLs on static hosting.
 for (const [oldPath, destination] of Object.entries({
   '/about-us': '/about/', '/contact-us': '/contact/', '/service': '/services/',
 })) {
   const target = SITE_URL + destination;
-  const html = `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${target}"><title>Page moved | Source II Studio</title></head><body><p>This page has moved. <a href="${target}">Continue to Source II Studio</a>.</p></body></html>`;
+  const html = `<!doctype html><html lang="en"><head><meta charset="UTF-8"><meta http-equiv="refresh" content="0; url=${target}"><link rel="canonical" href="${target}"><title>Page moved | Source II Studio</title></head><body><a href="${target}">Continue to Source II Studio</a></body></html>`;
   await mkdir(`dist${oldPath}`, { recursive: true });
   await writeFile(`dist${oldPath}/index.html`, html);
 }
+
