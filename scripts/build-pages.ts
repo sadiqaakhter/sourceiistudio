@@ -30,7 +30,7 @@ const navigation = `<nav aria-label="Main navigation">${Object.entries(PAGES).ma
 for (const [path, page] of Object.entries(PAGES)) {
   const url = `${SITE_URL}${path === '/' ? '/' : `${path}/`}`;
   const structuredData = getPageSchema(path);
-  const preload = path === '/' ? '<link rel="preload" as="image" href="/images/optimized/story-1152.webp" imagesrcset="/images/optimized/story-640.webp 640w, /images/optimized/story-1152.webp 1152w" imagesizes="(min-width: 960px) 48vw, 92vw" fetchpriority="high" />' : '';
+  const preload = path === '/' ? '<link rel="preload" as="image" href="/images/optimized/realistic-story-1536.webp" imagesrcset="/images/optimized/realistic-story-768.webp 768w, /images/optimized/realistic-story-1536.webp 1536w" imagesizes="(min-width: 960px) 48vw, 92vw" fetchpriority="high" />' : '';
   const head = `${preload}<title>${escape(page.title)}</title>
     <meta name="description" content="${escape(page.description)}" />
     <link rel="canonical" href="${url}" />

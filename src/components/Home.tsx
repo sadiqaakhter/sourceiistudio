@@ -21,8 +21,8 @@ export default function Home() {
       </div>
       <div className="hero-art">
         <Star className="art-star star-one" aria-hidden="true" /><Sparkles className="art-star star-two" aria-hidden="true" />
-        <div className="art-mat"><img src="/images/optimized/story-1152.webp" srcSet="/images/optimized/story-640.webp 640w, /images/optimized/story-1152.webp 1152w" sizes="(min-width: 960px) 48vw, 92vw" width={1152} height={768} fetchPriority="high" alt="Whimsical storybook illustration of a little lion and a friendly scarecrow in a golden cornfield" /></div>
-        <span className="art-note">Where little characters<br />find their big adventures.</span>
+        <div className="art-mat"><img src="/images/optimized/realistic-story-1536.webp" srcSet="/images/optimized/realistic-story-768.webp 768w, /images/optimized/realistic-story-1536.webp 1536w" sizes="(min-width: 960px) 48vw, 92vw" width={1536} height={1024} fetchPriority="high" alt="AI-generated style concept: lifelike lion cub and handmade scarecrow in a sunlit cornfield" /></div>
+        <span className="art-note">AI-generated style concept · Not a published client project.</span>
         <span className="art-stamp" aria-hidden="true">Made for<br /><strong>WONDER</strong><Star size={16} /></span>
       </div>
     </section>
