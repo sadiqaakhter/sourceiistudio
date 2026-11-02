@@ -7,8 +7,8 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import Home from './components/Home';
 import PageMetadata from './components/PageMetadata';
 import ScrollToTop from './components/ScrollToTop';
-import BackgroundElements from './components/BackgroundElements';
-import CustomCursor from './components/CustomCursor';
+
+
 import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Menu, X } from 'lucide-react';
@@ -54,7 +54,7 @@ function Navbar() {
     <>
       {/* Floating Glassmorphism Navbar */}
       <motion.nav
-        initial={{ y: -20, opacity: 0 }}
+        initial={false}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
         className={`fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-6xl px-5 py-3 flex justify-between items-center rounded-2xl transition-all duration-300 ${
@@ -100,13 +100,13 @@ function Navbar() {
           })}
         </div>
 
-        {/* Hire Us CTA + Mobile Toggle */}
+        {/* Start your book CTA + Mobile Toggle */}
         <div className="flex items-center gap-3">
           <Link
             to="/contact"
             className="px-5 py-2 bg-studio-accent text-white text-[11px] font-bold uppercase tracking-wider rounded-xl hover:bg-studio-ink transition-colors duration-300 shadow-[0_2px_12px_rgba(26,147,145,0.25)]"
           >
-            Hire Us
+            Start your book
           </Link>
           <button
             onClick={() => setMenuOpen((v) => !v)}
@@ -164,12 +164,12 @@ export default function App() {
     <Router>
       <PageMetadata />
       <ScrollToTop />
-      <div className="relative min-h-screen bg-studio-bg text-studio-ink selection:bg-studio-accent selection:text-studio-bg lg:cursor-none">
+      <div className="relative min-h-screen bg-studio-bg text-studio-ink selection:bg-studio-accent selection:text-studio-bg">
         {/* Global Background Elements */}
-        <BackgroundElements />
+        
 
         {/* Custom Animated Cursor */}
-        <CustomCursor />
+        
 
         {/* Progress Bar */}
         <motion.div

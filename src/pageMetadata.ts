@@ -9,10 +9,10 @@ export const PAGES = {
     summary: "Source II Studio is founded by children's book illustrator Sadiqa Akhter. We help authors and publishers worldwide bring picture books to life with expressive characters, story illustrations, book covers, and publishing layouts.",
   },
   '/services': {
-    title: "Children's Book Illustration & Publishing Services | Source II Studio",
-    heading: 'Illustration & Publishing Services',
+    title: "Children's Book Illustration & KDP Formatting | Source II Studio",
+    heading: 'Children’s Book Illustration Services',
     description: "Explore children's book illustration, character design, book covers, animation, and Amazon KDP formatting services from Source II Studio.",
-    summary: 'Explore illustration and art, animation and video, and publishing support for authors and publishers.',
+    summary: 'Children’s book illustration, character design, book cover design, and Amazon KDP formatting for authors and publishers. Explore creative support from your first sketch to your finished book.',
   },
   '/portfolio': {
     title: "Children's Book Illustration Portfolio | Source II Studio",
