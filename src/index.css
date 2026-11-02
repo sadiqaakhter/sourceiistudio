@@ -92,3 +92,9 @@
 @media(max-width:639px){.storybook-home h1{font-size:42px}.hero-art{width:100%;padding-bottom:0}.art-mat{padding:8px}.art-mat img{height:auto}.art-note{font-size:10px}.book-cover{height:340px;padding:30px}.meet-art img{height:310px}.story-contact{border-radius:18px}}
 
 .art-note br{display:block}
+
+/* User-selected paint texture, kept behind a readable paper surface. */
+.storybook-home{background-color:#fffdf8;background-image:linear-gradient(#fffdf8ed,#fffdf8ed),url('/images/samples/paint-background.jpg');background-size:auto,920px auto;background-repeat:repeat,repeat-y;background-position:center,center top}
+.story-hero{background-image:linear-gradient(90deg,#fffdf8f5 15%,#fffdf8b0 65%,#fffdf8d9),url('/images/samples/paint-background.jpg');background-size:cover;background-repeat:no-repeat;background-position:center}
+.sample-gallery{padding-bottom:20px}.sample-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}.sample-grid figure{margin:0;padding:16px;background:#fff;border:1px solid #e6dfd3;border-radius:14px;box-shadow:0 12px 30px -24px #3b392f80}.sample-grid a{display:block}.sample-grid img{display:block;width:100%;height:auto;aspect-ratio:7/4;object-fit:contain;background:white;border-radius:7px}.sample-grid figcaption{padding:18px 5px 5px}.sample-grid strong{display:block;font-family:var(--font-serif);font-size:23px;font-weight:500}.sample-grid figcaption span{display:block;font-size:11px;color:#625b52;margin-top:8px;line-height:1.6}.sample-wide{grid-column:1/-1}.sample-wide img{max-height:420px;aspect-ratio:auto}.services-band{background-color:#eaf5f1f0}.story-footer{background:#fffdf8e8}
+@media(max-width:639px){.sample-grid{grid-template-columns:1fr;gap:22px}.sample-wide{grid-column:auto}.sample-grid img{aspect-ratio:auto}.sample-grid figure{padding:10px}.sample-grid strong{font-size:21px}.storybook-home{background-size:auto,600px auto}}
