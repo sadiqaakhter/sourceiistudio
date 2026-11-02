@@ -109,3 +109,10 @@
 .studio-topnav button[aria-label="Toggle menu"]{min-width:44px;min-height:44px}.studio-topnav .nav-enquiry{display:flex;align-items:center;justify-content:center;min-height:44px}@media(max-width:480px){.studio-topnav .nav-enquiry{display:none}.studio-topnav>a{font-size:18px}.studio-topnav{padding:8px 16px}}
 
 .studio-inner .flex.items-start>div:last-child{min-width:0}.studio-inner a[href^="mailto:"]{overflow-wrap:anywhere;word-break:normal}.studio-inner .grid>div{min-width:0}@media(max-width:767px){.studio-inner .flex.items-start{gap:16px}.studio-inner a[href^="mailto:"]{font-size:18px}.studio-inner .flex.items-start>div:first-child{flex-shrink:0}}
+
+@media(max-width:479px){
+ .service-category-header{flex-wrap:wrap;gap:12px}
+ .service-category-header>div:first-child{max-width:100%;font-size:11px;letter-spacing:.08em;padding-inline:14px}
+ .service-category-header>div:nth-child(2){display:none}
+ .studio-inner a[href^="mailto:"]{font-size:16px;overflow-wrap:anywhere;word-break:break-word}
+}

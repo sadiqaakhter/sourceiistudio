@@ -245,7 +245,7 @@ export default function Services() {
             transition={{ duration: 0.8 }}
           >
             {/* Category header */}
-            <div className="flex items-center gap-4 mb-12">
+            <div className="service-category-header flex items-center gap-4 mb-12">
               <div
                 className="flex items-center gap-3 px-5 py-2 rounded-full border text-sm font-mono uppercase tracking-widest"
                 style={{
