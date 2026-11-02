@@ -9,10 +9,10 @@ const TOPICS = [
 ];
 export default function ExploreStudio() {
   const { pathname } = useLocation();
-  if (!['/', '/services', '/portfolio', '/about', '/contact'].includes(pathname.replace(/\/$/, '') || '/')) return null;
+  if (!(pathname === '/' || /^\/(services|portfolio|about|contact|projects|guides)(\/|$)/.test(pathname))) return null;
   return <section className="explore-studio" aria-labelledby="explore-studio-heading">
     <div className="explore-heading"><div><p className="story-eyebrow">Find the right creative support</p><h2 id="explore-studio-heading">Explore your book’s possibilities.</h2></div><p>Follow your story from illustration inspiration to a project conversation.</p></div>
     <nav className="explore-grid" aria-label="Illustration services and related artwork">{TOPICS.map(({title,text,href,icon: Icon})=><Link to={href} key={title}><Icon size={25} aria-hidden="true" /><h3>{title}</h3><p>{text}</p><span>Explore <ArrowRight size={16} aria-hidden="true" /></span></Link>)}</nav>
-    <p className="explore-next">Meet <Link to="/about/">children’s book illustrator Sadiqa Akhter</Link>, or <Link to="/contact/">request an illustration quote</Link> with your story, page count, and preferred style.</p>
+    <p className="explore-next">Meet <Link to="/about/">children’s book illustrator Sadiqa Akhter</Link>, or <Link to="/contact/">request an illustration quote</Link> with your story, page count, and preferred style. Read our <Link to="/guides/childrens-book-illustration/">illustration guide for authors</Link> before you begin.</p>
   </section>;
 }

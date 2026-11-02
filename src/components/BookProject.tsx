@@ -1,0 +1,10 @@
+import { Link } from 'react-router-dom';
+import { BOOK_PROJECTS } from '../projectContent';
+import PageHeader from './PageHeader';
+export default function BookProject({ path }: { path: string }) {
+  const project = BOOK_PROJECTS.find(book => book.path === path)!;
+  return <div className="studio-inner"><PageHeader title={project.title} description="Selected children’s book illustration work by Sadiqa Akhter." eyebrow="From the published bookshelf" />
+    <article className="project-detail"><figure><img src={project.image} alt={`${project.title} book cover, with illustration credit for Sadiqa Akhter`} width={480} height={600} /><figcaption>Selected book cover</figcaption></figure><div><p className="story-eyebrow">Illustration credit</p><h2>A story brought to the bookshelf.</h2><dl><div><dt>Book</dt><dd>{project.title}</dd></div>{project.author && <div><dt>Author</dt><dd>{project.author}</dd></div>}<div><dt>Illustrator</dt><dd>Sadiqa Akhter</dd></div></dl><p>{project.focus}</p><p>This portfolio entry presents the book cover and its illustration credit. Explore Sadiqa’s Amazon author page to browse the available book listings.</p><a className="story-text-link" href="https://www.amazon.com/author/sadiqaakhter" target="_blank" rel="noopener noreferrer">Browse books on Amazon ↗</a><h3>Planning a book of your own?</h3><p>Start with your story, reader age, illustration style, and intended format. We can discuss character design, interior artwork, cover illustration, and formatting as an agreed project scope.</p><div className="story-actions"><Link className="story-button" to="/contact/">Discuss your illustration project →</Link><Link className="story-text-link" to="/services/">Explore illustration services</Link></div></div></article>
+    <section className="studio-reading"><h2>Explore more illustrated books</h2><div className="project-link-grid">{BOOK_PROJECTS.filter(book=>book.path!==path).map(book=><Link to={`${book.path}/`} key={book.path}>{book.title} →</Link>)}</div><Link to="/portfolio/" className="story-text-link">Back to the full portfolio</Link></section>
+  </div>;
+}

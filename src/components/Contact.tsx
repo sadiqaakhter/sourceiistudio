@@ -1,3 +1,5 @@
+import PageHeader from './PageHeader';
+import { PAGES } from '../pageMetadata';
 import { trackAcceptedEnquiry } from '../lib/analytics';
 import React, { useRef, useState } from 'react';
 import { motion } from 'motion/react';
@@ -43,35 +45,9 @@ export default function Contact() {
   };
 
   return (
-    <div className="min-h-screen bg-studio-bg">
+    <div className="studio-inner min-h-screen bg-studio-bg">
       {/* Banner Section */}
-      <section className="relative h-[70vh] flex items-end px-6 md:px-12 lg:px-24 pb-12 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-studio-bg via-studio-bg/25 to-transparent z-10" />
-          <img
-            src={PAGE_BANNERS.contact}
-            className="w-full h-full object-cover opacity-90"
-            alt="Contact Banner"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          className="relative z-20 max-w-3xl"
-        >
-          <span className="text-studio-accent font-mono text-sm tracking-widest uppercase mb-3 block">Get in Touch</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase mb-4 leading-none text-studio-ink">
-            Let's Start a <br />
-            <span className="text-studio-accent">Conversation</span>
-          </h1>
-          <p className="text-base md:text-lg text-studio-ink/75 font-serif italic max-w-xl leading-relaxed">
-            Whether you have a specific project in mind or just want to explore the possibilities of digital art and animation, we're here to help.
-          </p>
-        </motion.div>
-      </section>
+      <PageHeader title={PAGES['/contact'].heading} description={PAGES['/contact'].summary} />
 
       <div className="pb-24 px-6 md:px-12 lg:px-24">
         <div className="max-w-7xl mx-auto">
@@ -84,7 +60,7 @@ export default function Contact() {
             transition={{ delay: 0.2, duration: 0.8 }}
           >
             <p className="text-xl text-studio-ink/60 font-serif italic mb-12 leading-relaxed">
-              Whether you have a specific project in mind or just want to explore the possibilities of digital art and animation, we're here to help.
+              Share your manuscript or story summary, reader age, page count, illustration style, and deadline. Mention whether you need a cover or formatting, too.
             </p>
 
             <motion.div 
@@ -242,7 +218,7 @@ export default function Contact() {
                     rows={6}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Tell us about your project..."
+                    placeholder="Tell us about your story, reader age, illustration count, preferred style, deadline, and publishing format..."
                     className="w-full bg-studio-ink/5 border border-studio-ink/10 rounded-xl px-6 py-4 focus:outline-none focus:border-studio-accent transition-colors text-studio-ink resize-none"
                   />
                 </div>

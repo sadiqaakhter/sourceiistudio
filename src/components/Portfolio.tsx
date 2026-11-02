@@ -1,3 +1,6 @@
+import { BOOK_PROJECTS } from '../projectContent';
+import PageHeader from './PageHeader';
+import { PAGES } from '../pageMetadata';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import PortfolioPreview from './PortfolioPreview';
@@ -13,35 +16,9 @@ export default function Portfolio() {
   const [activeTab, setActiveTab] = useState<Tab>('flipbook');
 
   return (
-    <div className="min-h-screen bg-studio-bg text-studio-ink">
+    <div className="studio-inner min-h-screen bg-studio-bg text-studio-ink">
       {/* Banner Section */}
-      <section className="relative h-[70vh] flex items-end px-6 md:px-12 lg:px-24 pb-12 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-studio-bg via-studio-bg/25 to-transparent z-10" />
-          <img
-            src={PAGE_BANNERS.portfolio}
-            fetchPriority="high"
-            className="w-full h-full object-cover opacity-90"
-            alt="Portfolio Banner"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          className="relative z-20 max-w-3xl"
-        >
-          <span className="text-studio-accent font-mono text-sm tracking-widest uppercase mb-3 block">Our Work</span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase mb-4 leading-none">
-            Children’s Book <span className="text-studio-accent">Illustration Portfolio</span>
-          </h1>
-          <p className="text-base md:text-lg text-studio-ink/75 font-serif italic max-w-xl leading-relaxed">
-            Explore picture book illustrations, character artwork, published children’s books, and creative case studies from Source II Studio.
-          </p>
-        </motion.div>
-      </section>
+      <PageHeader title={PAGES['/portfolio'].heading} description={PAGES['/portfolio'].summary} />
 
       <div className="px-6 md:px-12 lg:px-24">
         <Link 
@@ -56,10 +33,10 @@ export default function Portfolio() {
         <h2 id="published-books-heading" className="text-3xl md:text-4xl font-bold tracking-tight mt-3 mb-4">Books illustrated by Sadiqa Akhter</h2>
         <p className="text-studio-ink/70 max-w-2xl mb-8">Selected children’s books with Sadiqa Akhter credited as illustrator on the cover.</p>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {PUBLISHED_BOOKS.map((book) => (
+          {BOOK_PROJECTS.map((book) => (
             <article key={book.title} className="rounded-2xl border border-studio-ink/10 bg-studio-ink/5 p-7">
               <img src={book.image} alt={`${book.title} cover, illustrated by Sadiqa Akhter`} loading="lazy" decoding="async" width="400" height="480" className="w-full h-72 object-contain bg-white rounded-xl mb-5" />
-              <h3 className="text-2xl font-bold tracking-tight mb-4">{book.title}</h3>
+              <h3 className="text-2xl font-bold tracking-tight mb-4"><Link to={`${book.path}/`} className="underline underline-offset-4">{book.title}</Link></h3>
               {book.author && <p className="text-sm text-studio-ink/70 mb-2">Author: {book.author}</p>}
               <p className="text-sm text-studio-ink/70">Illustrator: Sadiqa Akhter</p>
             </article>

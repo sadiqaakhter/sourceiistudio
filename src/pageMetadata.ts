@@ -1,7 +1,8 @@
+import { BOOK_PROJECTS, AUTHOR_GUIDE_PATH } from './projectContent';
 import { PUBLISHED_BOOKS } from './searchContent';
 export const SITE_URL = 'https://sourceiistudio.com';
 
-export const PAGES = {
+export const PAGES: Record<string, { title: string; heading: string; description: string; summary: string }> = {
   '/': {
     title: "Children's Book Illustrator Sadiqa Akhter | Source II Studio",
     heading: "Children's Book Illustration",
@@ -32,6 +33,8 @@ export const PAGES = {
     description: 'Hire a children’s book illustrator for your next story. Request a quote from Source II Studio for picture book artwork, character design, covers, and KDP formatting.',
     summary: 'Tell us about your story, intended age group, illustration style, page count, and timeline. Email hello@sourceiistudio.com to discuss your project.',
   },
+  ...Object.fromEntries(BOOK_PROJECTS.map(book => [book.path, { title: `${book.title} | Illustration by Sadiqa Akhter`, heading: book.title, description: `Explore ${book.title}, a children’s book with illustration credit for Sadiqa Akhter. View its cover and discover Source II Studio’s illustration services.`, summary: `Selected published book cover. Illustrator: Sadiqa Akhter.${book.author ? ` Author: ${book.author}.` : ''}` }])),
+  [AUTHOR_GUIDE_PATH]: { title: 'Children’s Book Illustration Guide for Authors | Source II Studio', heading: 'Your children’s book illustration guide', description: 'Plan your children’s book illustration project: costs, timelines, manuscript preparation, choosing an art style, covers, and KDP formatting.', summary: 'Practical advice from Source II Studio to help you prepare your story, choose an illustration style, and discuss your project scope.' },
 };
 
 export const STUDIO_SCHEMA = {

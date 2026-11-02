@@ -5,6 +5,7 @@
 
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home from './components/Home';
+import { BOOK_PROJECTS, AUTHOR_GUIDE_PATH } from './projectContent';
 import ExploreStudio from './components/ExploreStudio';
 import PageMetadata from './components/PageMetadata';
 import ScrollToTop from './components/ScrollToTop';
@@ -17,6 +18,8 @@ import { Menu, X } from 'lucide-react';
 const Portfolio = lazy(() => import('./components/Portfolio'));
 const Services = lazy(() => import('./components/Services'));
 const About = lazy(() => import('./components/About'));
+const BookProject = lazy(() => import('./components/BookProject'));
+const AuthorGuide = lazy(() => import('./components/AuthorGuide'));
 const Contact = lazy(() => import('./components/Contact'));
 
 function NotFound() {
@@ -58,7 +61,7 @@ function Navbar() {
         initial={false}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-6xl px-5 py-3 flex justify-between items-center rounded-2xl transition-all duration-300 ${
+        className={`studio-topnav fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-6xl px-5 py-3 flex justify-between items-center rounded-2xl transition-all duration-300 ${
           scrolled
             ? 'bg-studio-bg/75 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_rgba(44,36,33,0.10)]'
             : 'bg-studio-bg/55 backdrop-blur-xl border border-studio-ink/8 shadow-[0_4px_24px_rgba(44,36,33,0.06)]'
@@ -75,7 +78,7 @@ function Navbar() {
         </Link>
 
         {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-1">
+        <div className="hidden lg:flex items-center gap-1">
           {NAV_LINKS.map((link) => {
             const isActive = currentPath === link.to;
             return (
@@ -105,13 +108,13 @@ function Navbar() {
         <div className="flex items-center gap-3">
           <Link
             to="/contact"
-            className="px-5 py-2 bg-studio-accent text-white text-[11px] font-bold uppercase tracking-wider rounded-xl hover:bg-studio-ink transition-colors duration-300 shadow-[0_2px_12px_rgba(26,147,145,0.25)]"
+            className="nav-enquiry px-5 py-2 bg-studio-accent text-white text-[11px] font-bold uppercase tracking-wider rounded-xl hover:bg-studio-ink transition-colors duration-300 shadow-[0_2px_12px_rgba(26,147,145,0.25)]"
           >
             Start your book
           </Link>
           <button
             onClick={() => setMenuOpen((v) => !v)}
-            className="md:hidden p-2 rounded-lg text-studio-ink/70 hover:text-studio-accent hover:bg-studio-accent/8 transition-colors"
+            className="lg:hidden p-2 rounded-lg text-studio-ink/70 hover:text-studio-accent hover:bg-studio-accent/8 transition-colors"
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
@@ -190,6 +193,8 @@ export default function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/contact" element={<Contact />} />
+            {BOOK_PROJECTS.map(book => <Route key={book.path} path={book.path} element={<BookProject path={book.path} />} />)}
+            <Route path={AUTHOR_GUIDE_PATH} element={<AuthorGuide />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           </Suspense>

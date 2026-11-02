@@ -1,3 +1,5 @@
+import PageHeader from './PageHeader';
+import { PAGES } from '../pageMetadata';
 import BookServiceGuide from './BookServiceGuide';
 import { CLIENT_FAQS } from '../searchContent';
 import { useState, useEffect } from 'react';
@@ -225,38 +227,10 @@ export default function Services() {
   } | null>(null);
 
   return (
-    <div className="min-h-screen bg-studio-bg text-studio-ink">
+    <div className="studio-inner min-h-screen bg-studio-bg text-studio-ink">
 
       {/* ── Banner ──────────────────────────────────────────────────── */}
-      <section className="relative h-[70vh] flex items-end px-6 md:px-12 lg:px-24 pb-12 overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-studio-bg via-studio-bg/25 to-transparent z-10" />
-          <img
-            src={PAGE_BANNERS.services}
-            fetchPriority="high"
-            className="w-full h-full object-cover opacity-90"
-            alt="Services Banner"
-            referrerPolicy="no-referrer"
-          />
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9 }}
-          className="relative z-20 max-w-3xl"
-        >
-          <span className="text-studio-accent font-mono text-sm tracking-widest uppercase mb-3 block">
-            Our Expertise
-          </span>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase mb-4 leading-none">
-            Children’s Book <span className="text-studio-accent">Illustration Services</span>
-          </h1>
-          <p className="text-base md:text-lg text-studio-ink/75 font-serif italic max-w-xl leading-relaxed">
-            Picture book illustration, watercolor artwork, custom character design, children’s book covers, and Amazon KDP formatting for authors and publishers.
-          </p>
-        </motion.div>
-      </section>
+      <PageHeader title={PAGES['/services'].heading} description={PAGES['/services'].summary} />
 
       <BookServiceGuide />
 
