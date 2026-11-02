@@ -23,7 +23,7 @@ export default function Home() {
       </div>
       <div className="hero-art">
         <Star className="art-star star-one" aria-hidden="true" /><Sparkles className="art-star star-two" aria-hidden="true" />
-        <div className="art-mat"><img src="/images/samples/watercolor-book-1280.webp" srcSet="/images/samples/watercolor-book-640.webp 640w, /images/samples/watercolor-book-1280.webp 1280w" sizes="(min-width: 960px) 48vw, 92vw" width={1536} height={1024} fetchPriority="high" alt="Watercolour children’s book art and Dancing in Bloom cover design sample from Source II Studio" /></div>
+        <div className="art-mat"><img src="/images/samples/watercolor-book-1280.webp" srcSet="/images/samples/watercolor-book-480.webp 480w, /images/samples/watercolor-book-640.webp 640w, /images/samples/watercolor-book-1280.webp 1280w" sizes="(min-width: 960px) 48vw, 92vw" width={1536} height={1024} fetchPriority="high" alt="Watercolour children’s book art and Dancing in Bloom cover design sample from Source II Studio" /></div>
         <span className="art-note">Watercolour children’s book art · Cover design sample</span>
         <span className="art-stamp" aria-hidden="true">Made for<br /><strong>WONDER</strong><Star size={16} /></span>
       </div>

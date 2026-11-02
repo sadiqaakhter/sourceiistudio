@@ -11,7 +11,6 @@ import PageMetadata from './components/PageMetadata';
 import ScrollToTop from './components/ScrollToTop';
 
 
-import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
 import { useState, useEffect, lazy, Suspense } from 'react';
 import { Menu, X } from 'lucide-react';
 
@@ -57,10 +56,10 @@ function Navbar() {
   return (
     <>
       {/* Floating Glassmorphism Navbar */}
-      <motion.nav
-        initial={false}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: [0.21, 0.47, 0.32, 0.98] }}
+      <nav
+
+
+
         className={`studio-topnav fixed top-4 left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-6xl px-5 py-3 flex justify-between items-center rounded-2xl transition-all duration-300 ${
           scrolled
             ? 'bg-studio-bg/75 backdrop-blur-2xl border border-white/20 shadow-[0_8px_32px_rgba(44,36,33,0.10)]'
@@ -92,10 +91,10 @@ function Navbar() {
                 }`}
               >
                 {isActive && (
-                  <motion.span
-                    layoutId="nav-active"
+                  <span
+
                     className="absolute inset-0 bg-studio-accent/8 rounded-lg"
-                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+
                   />
                 )}
                 <span className="relative z-10">{link.label}</span>
@@ -121,16 +120,16 @@ function Navbar() {
             {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
+
         {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -8, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.97 }}
-            transition={{ duration: 0.2, ease: 'easeOut' }}
+          <div
+
+
+
+
             className="fixed top-[5rem] left-1/2 -translate-x-1/2 z-40 w-[calc(100%-2rem)] max-w-sm bg-studio-bg/90 backdrop-blur-2xl border border-white/20 shadow-[0_16px_48px_rgba(44,36,33,0.12)] rounded-2xl p-4 flex flex-col gap-1"
           >
             {NAV_LINKS.map((link) => {
@@ -149,20 +148,14 @@ function Navbar() {
                 </Link>
               );
             })}
-          </motion.div>
+          </div>
         )}
-      </AnimatePresence>
+
     </>
   );
 }
 
 export default function App() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
 
   return (
     <Router>
@@ -175,11 +168,6 @@ export default function App() {
         {/* Custom Animated Cursor */}
         
 
-        {/* Progress Bar */}
-        <motion.div
-          className="fixed top-0 left-0 right-0 h-0.5 bg-studio-accent z-50 origin-left"
-          style={{ scaleX }}
-        />
 
         {/* Floating Glassmorphism Navigation */}
         <Navbar />
