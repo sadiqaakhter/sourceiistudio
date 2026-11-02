@@ -55,7 +55,7 @@ export default function Contact() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-24">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={false}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
           >
@@ -73,7 +73,7 @@ export default function Contact() {
                   }
                 }
               }}
-              initial="hidden"
+              initial={false}
               animate="visible"
               className="space-y-8"
             >
@@ -88,7 +88,7 @@ export default function Contact() {
                   <Mail className="w-6 h-6 text-studio-accent" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-mono uppercase tracking-widest text-studio-ink/40 mb-1">Email Us</h3>
+                  <h2 className="text-sm font-mono uppercase tracking-widest text-studio-ink/40 mb-1">Email Us</h2>
                   <a href="mailto:hello@sourceiistudio.com" className="text-xl font-bold hover:text-studio-accent transition-colors text-studio-ink">
                     hello@sourceiistudio.com
                   </a>
@@ -106,7 +106,7 @@ export default function Contact() {
                   <Phone className="w-6 h-6 text-studio-accent" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-mono uppercase tracking-widest text-studio-ink/40 mb-1">Call Us</h3>
+                  <h2 className="text-sm font-mono uppercase tracking-widest text-studio-ink/40 mb-1">Call Us</h2>
                   <p className="text-xl font-bold text-studio-ink">+92 335 3077806</p>
                 </div>
               </motion.div>
@@ -122,7 +122,7 @@ export default function Contact() {
                   <MapPin className="w-6 h-6 text-studio-accent" />
                 </div>
                 <div>
-                  <h3 className="text-sm font-mono uppercase tracking-widest text-studio-ink/40 mb-1">Studio Location</h3>
+                  <h2 className="text-sm font-mono uppercase tracking-widest text-studio-ink/40 mb-1">Studio Location</h2>
                   <p className="text-xl font-bold text-studio-ink">Global Digital Studio <br /> <span className="text-studio-ink/40 font-normal text-lg">Remote-First Workflow</span></p>
                 </div>
               </motion.div>
@@ -131,7 +131,7 @@ export default function Contact() {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={false}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.4, duration: 0.8 }}
             className="bg-studio-ink/5 p-8 md:p-12 rounded-3xl border border-studio-ink/10"
@@ -139,7 +139,7 @@ export default function Contact() {
             {status === 'success' ? (
               <div className="h-full flex flex-col items-center justify-center text-center py-12">
                 <motion.div
-                  initial={{ scale: 0 }}
+                  initial={false}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 200, damping: 20 }}
                 >

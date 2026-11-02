@@ -107,3 +107,5 @@
 @media(max-width:380px){.storybook-home h1{font-size:36px}.story-wrap{padding-inline:18px}.hero-description{font-size:15px}.studio-page-header h1{font-size:32px}.explore-studio,.book-service-guide{margin-inline:12px;padding:20px}}
 
 .studio-topnav button[aria-label="Toggle menu"]{min-width:44px;min-height:44px}.studio-topnav .nav-enquiry{display:flex;align-items:center;justify-content:center;min-height:44px}@media(max-width:480px){.studio-topnav .nav-enquiry{display:none}.studio-topnav>a{font-size:18px}.studio-topnav{padding:8px 16px}}
+
+.studio-inner .flex.items-start>div:last-child{min-width:0}.studio-inner a[href^="mailto:"]{overflow-wrap:anywhere;word-break:normal}.studio-inner .grid>div{min-width:0}@media(max-width:767px){.studio-inner .flex.items-start{gap:16px}.studio-inner a[href^="mailto:"]{font-size:18px}.studio-inner .flex.items-start>div:first-child{flex-shrink:0}}
