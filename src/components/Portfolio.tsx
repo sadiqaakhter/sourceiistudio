@@ -35,10 +35,10 @@ export default function Portfolio() {
         >
           <span className="text-studio-accent font-mono text-sm tracking-widest uppercase mb-3 block">Our Work</span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase mb-4 leading-none">
-            The <span className="text-studio-accent">Portfolio</span>
+            Children’s Book <span className="text-studio-accent">Illustration Portfolio</span>
           </h1>
           <p className="text-base md:text-lg text-studio-ink/75 font-serif italic max-w-xl leading-relaxed">
-            A showcase of our world-class illustrations, high-tech animations, and strategic case studies.
+            Explore picture book illustrations, character artwork, published children’s books, and creative case studies from Source II Studio.
           </p>
         </motion.div>
       </section>

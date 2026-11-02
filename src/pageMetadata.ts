@@ -17,7 +17,7 @@ export const PAGES = {
   '/portfolio': {
     title: "Children's Book Illustration Portfolio | Source II Studio",
     heading: "Children's Book Illustration Portfolio",
-    description: "View Source II Studio's illustration portfolio, character artwork, animation examples, and creative case studies led by Sadiqa Akhter.",
+    description: "Explore children’s book illustration, watercolor artwork, character design, and published picture books in Sadiqa Akhter’s Source II Studio portfolio.",
     summary: 'Browse our illustration portfolio and creative case studies, or download the studio portfolio to review our artwork.',
   },
   '/about': {
@@ -29,7 +29,7 @@ export const PAGES = {
   '/contact': {
     title: "Contact a Children's Book Illustrator | Source II Studio",
     heading: 'Discuss Your Book Project',
-    description: 'Contact Source II Studio about picture-book illustrations, character design, covers, and publishing support for your next project.',
+    description: 'Hire a children’s book illustrator for your next story. Request a quote from Source II Studio for picture book artwork, character design, covers, and KDP formatting.',
     summary: 'Tell us about your story, intended age group, illustration style, page count, and timeline. Email hello@sourceiistudio.com to discuss your project.',
   },
 };

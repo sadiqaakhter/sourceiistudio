@@ -1,3 +1,4 @@
+import BookServiceGuide from './BookServiceGuide';
 import { CLIENT_FAQS } from '../searchContent';
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
@@ -249,14 +250,15 @@ export default function Services() {
             Our Expertise
           </span>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter uppercase mb-4 leading-none">
-            Our <span className="text-studio-accent">Services</span>
+            Children’s Book <span className="text-studio-accent">Illustration Services</span>
           </h1>
           <p className="text-base md:text-lg text-studio-ink/75 font-serif italic max-w-xl leading-relaxed">
-            From traditional children's book illustrations to hyper-realistic 3D animations and
-            technical publishing guides — a comprehensive suite of digital studio services.
+            Picture book illustration, watercolor artwork, custom character design, children’s book covers, and Amazon KDP formatting for authors and publishers.
           </p>
         </motion.div>
       </section>
+
+      <BookServiceGuide />
 
       {/* ── Service Categories ──────────────────────────────────────── */}
       <div className="px-6 md:px-12 lg:px-24 space-y-28 pb-32 pt-8">

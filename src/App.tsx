@@ -5,6 +5,7 @@
 
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import Home from './components/Home';
+import ExploreStudio from './components/ExploreStudio';
 import PageMetadata from './components/PageMetadata';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -192,6 +193,7 @@ export default function App() {
             <Route path="*" element={<NotFound />} />
           </Routes>
           </Suspense>
+          <ExploreStudio />
         </main>
       </div>
     </Router>

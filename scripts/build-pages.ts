@@ -5,6 +5,8 @@ import { createElement } from 'react';
 import { renderToString } from 'react-dom/server';
 import { MemoryRouter } from 'react-router-dom';
 import Home from '../src/components/Home';
+import ExploreStudio from '../src/components/ExploreStudio';
+import BookServiceGuide from '../src/components/BookServiceGuide';
 import { PAGES, SITE_URL, getPageSchema } from '../src/pageMetadata';
 import { SERVICE_CATEGORIES, FOUNDERS, PAGE_BANNERS } from '../src/constants';
 import { PUBLISHED_BOOKS, CLIENT_FAQS } from '../src/searchContent';
@@ -48,8 +50,9 @@ for (const [path, page] of Object.entries(PAGES)) {
   let details = path === '/services' ? SERVICE_CATEGORIES.map(category =>
     `<section><h2>${escape(category.category)}</h2>${category.items.map(service => `<h3>${escape(service.title)}</h3><p>${escape(service.description)}</p>`).join('')}</section>`).join('')
     : path === '/about' ? FOUNDERS.map(founder => `<section><h2>${escape(founder.name)}</h2><p>${escape(founder.role)}</p><p>${escape(founder.bio)}</p></section>`).join('') : '';
+  if (path === '/services') details = renderToString(createElement(MemoryRouter, { initialEntries: ['/services/'] }, createElement(BookServiceGuide))) + details;
   if (path === '/services') details += `<section><h2>Children’s book illustration: common questions</h2>${CLIENT_FAQS.map(faq => `<h3>${escape(faq.question)}</h3><p>${escape(faq.answer)}</p>`).join('')}</section>`;
-  if (path === '/portfolio') details += `<section><h2>Books illustrated by Sadiqa Akhter</h2>${PUBLISHED_BOOKS.map(book => `<article><h3>${escape(book.title)}</h3><img src="${book.image}" alt="${escape(book.title)} cover, illustrated by Sadiqa Akhter" width="240" decoding="async" />${book.author ? `<p>Author: ${escape(book.author)}</p>` : ''}<p>Illustrator: Sadiqa Akhter</p></article>`).join('')}</section>`;
+  if (path === '/portfolio') details += `<section><h2 id="published-books-heading">Books illustrated by Sadiqa Akhter</h2>${PUBLISHED_BOOKS.map(book => `<article><h3>${escape(book.title)}</h3><img src="${book.image}" alt="${escape(book.title)} cover, illustrated by Sadiqa Akhter" width="240" decoding="async" />${book.author ? `<p>Author: ${escape(book.author)}</p>` : ''}<p>Illustrator: Sadiqa Akhter</p></article>`).join('')}</section>`;
   // Styled, usable content is present before JavaScript starts, including on slow connections.
   const banner = PAGE_BANNERS[path === '/' ? 'home' : path.slice(1) as keyof typeof PAGE_BANNERS];
   const content = `<div id="root"><main class="initial-page">
@@ -70,10 +73,11 @@ for (const [path, page] of Object.entries(PAGES)) {
       </section>
     </div>
   </main></div>`;
+  const relatedContent = renderToString(createElement(MemoryRouter, { initialEntries: [path] }, createElement(ExploreStudio)));
   const homeContent = path === '/' ? `<div id="root"><main id="main-content">
     <header class="initial-nav"><a class="initial-brand" href="/">SOURCE <span>II</span> STUDIO</a>${navigation}<a class="initial-button" href="/contact/">Start your book</a></header>
-    ${renderToString(createElement(MemoryRouter, null, createElement(Home)))}
-  </main></div>` : content;
+    ${renderToString(createElement(MemoryRouter, null, createElement(Home)))}${relatedContent}
+  </main></div>` : content.replace('</main></div>', `${relatedContent}</main></div>`);
   const html = template.replace(/\s*<meta name="description"[^>]*>/g, '')
     .replace(/<title>[\s\S]*?<\/title>/, head)
     .replace('</head>', `${initialStyles}</head>`)
