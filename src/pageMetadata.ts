@@ -6,12 +6,12 @@ export const PAGES: Record<string, { title: string; heading: string; description
   '/': {
     title: "Children's Book Illustrator Sadiqa Akhter | Source II Studio",
     heading: "Children's Book Illustration",
-    description: "Work with children's book illustrator Sadiqa Akhter at Source II Studio for picture books, consistent characters, book covers, and Amazon KDP formatting.",
+    description: "Hire Sadiqa Akhter, children’s book illustrator and designer at Source II Studio, for picture book art, character design, covers, and Amazon KDP layouts.",
     summary: "Source II Studio is founded by children's book illustrator Sadiqa Akhter. We help authors and publishers worldwide bring picture books to life with expressive characters, story illustrations, book covers, and publishing layouts.",
   },
   '/services': {
-    title: "Children's Book Illustration & KDP Formatting | Source II Studio",
-    heading: 'Children’s Book Illustration Services',
+    title: "Children’s Book Design & Illustration | Source II Studio",
+    heading: 'Children’s Book Design & Illustration Services',
     description: "Explore children's book illustration, character design, book covers, animation, and Amazon KDP formatting services from Source II Studio.",
     summary: 'Children’s book illustration, character design, book cover design, and Amazon KDP formatting for authors and publishers. Explore creative support from your first sketch to your finished book.',
   },
