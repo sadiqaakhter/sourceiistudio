@@ -1,3 +1,4 @@
+import CinematicHero from './CinematicHero';
 import { BOOK_PROJECTS } from '../projectContent';
 import ReviewLinks from './ReviewLinks';
 import { Link } from 'react-router-dom';
@@ -13,22 +14,7 @@ const SERVICES = [
 ];
 export default function Home() {
   return <div className="storybook-home">
-    <section className="story-hero story-wrap" aria-labelledby="hero-heading">
-      <div className="hero-copy">
-        <p className="story-eyebrow"><span /> A little wonder. A whole world of stories.</p>
-        <h1 id="hero-heading">Children’s book<br />illustration with<br /><em>a little magic.</em></h1>
-        <p className="hero-description">I’m Sadiqa Akhter, a children’s book illustrator and designer at Source II Studio. We help authors and publishers create expressive characters, illustrated picture book spreads, and covers that invite little readers in.</p>
-        <div className="story-actions"><Link to="/portfolio/" className="story-button">Explore the artwork <ArrowRight size={18} /></Link><Link to="/contact/" className="story-text-link">Tell us about your book <ArrowRight size={17} /></Link></div>
-        <div className="hero-proof"><span><Check size={15} /> 11+ years of experience</span><span><Check size={15} /> 500+ children’s books developed</span></div>
-      </div>
-      <div className="hero-art">
-        <Star className="art-star star-one" aria-hidden="true" /><Sparkles className="art-star star-two" aria-hidden="true" />
-        <div className="art-mat"><img src="/images/samples/watercolor-book-1280.webp" srcSet="/images/samples/watercolor-book-480.webp 480w, /images/samples/watercolor-book-640.webp 640w, /images/samples/watercolor-book-1280.webp 1280w" sizes="(min-width: 960px) 48vw, 92vw" width={1536} height={1024} fetchPriority="high" alt="Watercolour children’s book art and Dancing in Bloom cover design sample from Source II Studio" /></div>
-        <span className="art-note">Watercolour children’s book art · Cover design sample</span>
-        <span className="art-stamp" aria-hidden="true">Made for<br /><strong>WONDER</strong><Star size={16} /></span>
-      </div>
-    </section>
-    <div className="story-ribbon" aria-label="Studio specialities"><span>Picture books</span><Star size={13} aria-hidden="true" /><span>Memorable characters</span><Star size={13} aria-hidden="true" /><span>Beautiful covers</span><Star size={13} aria-hidden="true" /><span>Authors & publishers worldwide</span></div>
+    <CinematicHero />
     <section className="story-section story-wrap sample-gallery" aria-labelledby="samples-heading">
       <div className="section-top"><div><p className="story-eyebrow">Characters, colour & storytelling</p><h2 id="samples-heading">A style for <em>every little story.</em></h2></div><p className="section-aside">Explore character development, family storytelling, and soft watercolor illustration samples.</p></div>
       <div className="sample-grid">
