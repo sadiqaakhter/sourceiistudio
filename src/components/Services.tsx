@@ -198,7 +198,7 @@ function ServiceModal({
 
           <div className="flex gap-3 flex-wrap">
             <Link
-              to="/contact"
+              to="/contact/"
               onClick={onClose}
               className="px-7 py-3 text-white font-bold uppercase tracking-wider rounded-xl text-sm flex items-center gap-2 transition-all duration-300 hover:opacity-90"
               style={{ backgroundColor: accent }}
@@ -378,13 +378,13 @@ export default function Services() {
             className="flex flex-wrap gap-4 justify-center"
           >
             <Link
-              to="/contact"
+              to="/contact/"
               className="px-8 py-4 bg-studio-accent text-white font-bold uppercase tracking-wider hover:bg-studio-ink transition-all duration-300 flex items-center gap-2 rounded-xl shadow-[0_4px_20px_rgba(26,147,145,0.25)]"
             >
               Hire Us <ArrowRight className="w-5 h-5" />
             </Link>
             <Link
-              to="/portfolio"
+              to="/portfolio/"
               className="px-8 py-4 border border-studio-ink/20 hover:border-studio-accent hover:text-studio-accent transition-all duration-300 uppercase tracking-wider font-bold rounded-xl"
             >
               View Our Work

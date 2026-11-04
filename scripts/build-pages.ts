@@ -55,7 +55,7 @@ for (const [path, page] of Object.entries(PAGES)) {
     : path === '/about' ? FOUNDERS.map(founder => `<section><h2>${escape(founder.name)}</h2><p>${escape(founder.role)}</p><p>${escape(founder.bio)}</p></section>`).join('') : '';
   if (path === '/services') details = renderToString(createElement(MemoryRouter, { initialEntries: ['/services/'] }, createElement(BookServiceGuide))) + details;
   if (path === '/services') details += `<section><h2>Children’s book illustration: common questions</h2>${CLIENT_FAQS.map(faq => `<h3>${escape(faq.question)}</h3><p>${escape(faq.answer)}</p>`).join('')}</section>`;
-  if (path === '/portfolio') details += `<section><h2 id="published-books-heading">Books illustrated by Sadiqa Akhter</h2>${PUBLISHED_BOOKS.map(book => `<article><h3><a href="${BOOK_PROJECTS.find(project => project.title === book.title)!.path}/">${escape(book.title)}</a></h3><img src="${book.image}" alt="${escape(book.title)} cover, illustrated by Sadiqa Akhter" width="240" decoding="async" />${book.author ? `<p>Author: ${escape(book.author)}</p>` : ''}<p>Illustrator: Sadiqa Akhter</p></article>`).join('')}</section>`;
+  if (path === '/portfolio') details += `<section><h2 id="published-books-heading">Books illustrated by Sadiqa Akhter</h2>${PUBLISHED_BOOKS.map(book => `<article><h3><a href="${BOOK_PROJECTS.find(project => project.title === book.title)!.path}/">${escape(book.title)}</a></h3><img src="${book.image}" alt="${escape(book.title)} cover, illustrated by Sadiqa Akhter" width="240" decoding="async" />${book.author ? `<p>Author: ${escape(book.author)}</p>` : ''}<p>Illustrator: Sadiqa Akhter</p><p>Explore the cover artwork, character expressions and related illustration services on the project page.</p></article>`).join('')}</section>`;
   // Styled, usable content is present before JavaScript starts, including on slow connections.
   const banner = PAGE_BANNERS[path === '/' ? 'home' : path.slice(1) as keyof typeof PAGE_BANNERS] || '';
   const content = `<div id="root"><main class="initial-page">
@@ -93,7 +93,7 @@ for (const [path, page] of Object.entries(PAGES)) {
 
 await writeFile('dist/sitemap.xml', `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${Object.keys(PAGES).map(path => `  <url><loc>${SITE_URL}${path === '/' ? '/' : `${path}/`}</loc></url>`).join('\n')}
+${Object.keys(PAGES).map(path => `  <url><loc>${SITE_URL}${path === '/' ? '/' : `${path}/`}</loc>${['/services', '/portfolio', '/guides/childrens-book-illustration', ...BOOK_PROJECTS.map(book => book.path)].includes(path) ? '<lastmod>2026-11-04</lastmod>' : ''}</url>`).join('\n')}
 </urlset>\n`);
 
 const notFound = template
