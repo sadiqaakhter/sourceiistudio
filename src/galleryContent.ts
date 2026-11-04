@@ -48,7 +48,7 @@ export const GALLERY_ARTWORK = [
     "height": 591
   },
   {
-    "src": "/images/gallery/super-brain.webp",
+    "src": "/images/gallery/super-brain.webp?v=restored",
     "alt": "Super Brain and the Magic Foods book mockup",
     "width": 960,
     "height": 589
