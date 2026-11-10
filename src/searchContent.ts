@@ -1,8 +1,8 @@
 // Shared by the visible portfolio, services page, and generated HTML.
 export const PUBLISHED_BOOKS = [
-  { title: "Life Stinks! So Why Can’t I?", author: "J. Allen Shaw", image: "/images/books/life-stinks.png" },
-  { title: "Little Leo’s DJ Dream", author: "Patrick Chow", image: "/images/books/little-leo.png" },
-  { title: "Miles and the Grumpy Pants", author: "", image: "/images/books/miles-grumpy-pants.png" },
+  { title: "Life Stinks! So Why Can’t I?", author: "J. Allen Shaw", image: "/images/books/life-stinks.webp" },
+  { title: "Little Leo’s DJ Dream", author: "Patrick Chow", image: "/images/gallery/little-leo-cover.webp" },
+  { title: "Miles and the Grumpy Pants", author: "", image: "/images/books/miles-grumpy-pants.webp" },
 ];
 
 export const CLIENT_FAQS = [

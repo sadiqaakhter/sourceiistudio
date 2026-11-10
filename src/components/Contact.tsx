@@ -107,7 +107,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <h2 className="text-sm font-mono uppercase tracking-widest text-studio-ink/40 mb-1">Call Us</h2>
-                  <p className="text-xl font-bold text-studio-ink">+92 335 3077806</p>
+                  <a href="tel:+923353077806" className="text-xl font-bold text-studio-ink underline underline-offset-4 hover:text-studio-accent">+92 335 3077806</a>
                 </div>
               </motion.div>
 

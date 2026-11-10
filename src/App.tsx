@@ -11,15 +11,38 @@ import PageMetadata from './components/PageMetadata';
 import ScrollToTop from './components/ScrollToTop';
 
 
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense, type ComponentType } from 'react';
 import { Menu, X } from 'lucide-react';
 
-const Portfolio = lazy(() => import('./components/Portfolio'));
-const Services = lazy(() => import('./components/Services'));
-const About = lazy(() => import('./components/About'));
-const BookProject = lazy(() => import('./components/BookProject'));
-const AuthorGuide = lazy(() => import('./components/AuthorGuide'));
-const Contact = lazy(() => import('./components/Contact'));
+function routeComponent<Props extends object>(load: () => Promise<{default: ComponentType<Props>}>) {
+  let Ready: ComponentType<Props> | undefined;
+  let pending: ReturnType<typeof load> | undefined;
+  const preload = () => pending ??= load().then(module => { Ready = module.default; return module; });
+  const Lazy = lazy(preload);
+  return Object.assign((props: Props) => {
+    const Component = Ready ?? Lazy;
+    return <Component {...props} />;
+  }, { preload });
+}
+
+const Portfolio = routeComponent(() => import('./components/Portfolio'));
+const Services = routeComponent(() => import('./components/Services'));
+const About = routeComponent(() => import('./components/About'));
+const BookProject = routeComponent(() => import('./components/BookProject'));
+const AuthorGuide = routeComponent(() => import('./components/AuthorGuide'));
+const Contact = routeComponent(() => import('./components/Contact'));
+
+export async function preloadEntryRoute(pathname: string) {
+  const path = pathname.replace(/\/$/, '');
+  switch (path) {
+    case '/portfolio': return Portfolio.preload();
+    case '/services': return Services.preload();
+    case '/about': return About.preload();
+    case '/contact': return Contact.preload();
+    case AUTHOR_GUIDE_PATH: return AuthorGuide.preload();
+    default: if (BOOK_PROJECTS.some(book => book.path === path)) return BookProject.preload();
+  }
+}
 
 function NotFound() {
   return <section className="min-h-screen px-6 pt-40 text-center">

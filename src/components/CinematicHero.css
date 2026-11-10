@@ -86,3 +86,13 @@
 .cinema-hero .artwork-caption>span{font-size:8px;color:#695575;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .gallery-all figcaption strong,.gallery-all figcaption>span{display:block}
 .gallery-all figcaption strong{font-size:12px;color:#49315f;margin-bottom:4px}
+
+.artwork-open{position:absolute;inset:0;cursor:pointer}
+.artwork-open:focus-visible{outline:3px solid #117773;outline-offset:-3px}
+.artwork-viewer{position:fixed;inset:0;margin:auto;border:0;border-radius:16px;padding:0;width:min(92vw,960px);max-height:92dvh;overflow:auto;background:#fffdf8;color:#302248}
+.artwork-viewer::backdrop{background:#1d1429bb}
+.artwork-viewer>div{padding:16px;display:grid;gap:12px}
+.artwork-viewer button{justify-self:end;border:1px solid #6d587d;border-radius:99px;padding:8px 14px;cursor:pointer}
+.artwork-viewer img{display:block;width:100%;height:auto;max-height:68dvh;object-fit:contain}
+.artwork-viewer figcaption{padding-top:12px;text-align:center;font-size:14px}
+.artwork-viewer figcaption a{display:block;text-decoration:underline;margin-top:8px}
